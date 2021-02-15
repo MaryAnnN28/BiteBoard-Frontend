@@ -1,0 +1,33 @@
+div.card-deck {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+
+div.card {
+  flex: 0 1 30%;
+   width: 90%;
+   object-fit: cover;
+   background-color: white;
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+   margin-bottom: 25px;
+ }
+
+
+ .card-title {
+   color: #244D0C;
+   font-size: 15px;
+ }
+
+ .card-text {
+   font-size: 12px;
+ }
+
+ strong {
+   color: #386B19; 
+ }
+
+ .text-muted {
+   font-size: 11px;
+ }
