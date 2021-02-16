@@ -13,7 +13,7 @@ import NavbarContainer from './components/Navbar/NavbarContainer';
 import RecipeContainer from './components/Recipe/RecipeContainer'; 
 import FilterContainer from './components/Filter/FilterContainer'; 
 import NewRecipeForm from './components/Recipe/NewRecipeForm'; 
-import RecipeComponent from "./components/Recipe/RecipeComponent";
+import { ChakraProvider, Flex, Spacer } from "@chakra-ui/react";
 
 
 const BASE_URL = "http://localhost:3000/recipes"
@@ -22,7 +22,9 @@ const BASE_URL = "http://localhost:3000/recipes"
 class App extends React.Component {
 
   state = {
-    recipes: []
+    recipes: [],
+    search: "",
+    category: ""
   }
 
   componentDidMount() {
@@ -32,6 +34,28 @@ class App extends React.Component {
         recipes: recipeData
     }))
     
+  }
+
+  handleSearch = (e) => {
+    this.setState({
+      search: e.target.value
+    })
+  }
+
+  filter = () => {
+    let recipes = this.state.recipes;
+    if (this.state.category !== "") {
+      recipes = recipes.filter(recipe => recipe.category === this.state.category)
+      return recipes.filter(recipe => recipe.name.toLowerCase().includes(this.state.search.toLowerCase()))
+    } else {
+      return this.state.recipes.filter(recipe => recipe.name.toLowerCase().includes(this.state.search.toLowerCase()))
+    }
+  }
+
+  handleCategorySelect = (e) => {
+    this.setState({
+      category: e.target.value
+    })
   }
 
   render() {
@@ -47,13 +71,16 @@ class App extends React.Component {
           </nav>
 
           <NavbarContainer />
-          <FilterContainer /> 
-       
-            <Route exact path="/"> <Home /> </Route>
+          <ChakraProvider>
+            <Flex m="4">
+              <FilterContainer handleCategorySelect={this.handleCategorySelect} search={this.state.search} handleSearch={this.handleSearch} recipes={this.filter()}/> 
+              <Spacer />
+                <Route exact path="/"> <Home /> </Route>
 
-            <Route path="/recipes" render={(routerProps) =>
-              <RecipeContainer recipes={this.state.recipes} {...routerProps} />} />
-            
+                <Route path="/recipes" render={(routerProps) =>
+                  <RecipeContainer recipes={this.filter()} {...routerProps} />} />
+            </Flex>
+          </ChakraProvider>
         
             <Route path='/NewRecipeForm' render={(routerProps) =>
               <NewRecipeForm {...routerProps} />} />
