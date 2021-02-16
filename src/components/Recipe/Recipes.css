@@ -8,11 +8,12 @@
 .card {
   display: inline-grid; 
   width: 17rem;
-  height: 20rem;
+  height: 22rem;
   flex: 0 1 25%;   
   background-color: white;
    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin: 1.5rem 2rem;
+  margin-left: 2rem;
+  margin-bottom: 2rem;
  
  }
 

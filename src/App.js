@@ -72,7 +72,7 @@ class App extends React.Component {
 
           <NavbarContainer />
           <ChakraProvider>
-            <Flex m="4">
+            <Flex m="6">
               <FilterContainer handleCategorySelect={this.handleCategorySelect} search={this.state.search} handleSearch={this.handleSearch} recipes={this.filter()}/> 
               <Spacer />
                 <Route exact path="/"> <Home /> </Route>
