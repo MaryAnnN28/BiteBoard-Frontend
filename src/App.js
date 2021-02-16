@@ -13,6 +13,7 @@ import NavbarContainer from './components/Navbar/NavbarContainer';
 import RecipeContainer from './components/Recipe/RecipeContainer'; 
 import FilterContainer from './components/Filter/FilterContainer'; 
 import NewRecipeForm from './components/Recipe/NewRecipeForm'; 
+import { ChakraProvider, Flex, Spacer } from "@chakra-ui/react";
 
 
 const BASE_URL = "http://localhost:3000/recipes"
@@ -40,6 +41,10 @@ class App extends React.Component {
     })
   }
 
+  filter = () => {
+    return this.state.recipes.filter(recipe => recipe.name.toLowerCase().includes(this.state.search.toLowerCase()))
+  }
+
   render() {
     return (
       <Router>
@@ -53,12 +58,16 @@ class App extends React.Component {
           </nav>
 
           <NavbarContainer />
-          <FilterContainer search={this.state.search} handleSearch={this.handleSearch}/> 
-       
-            <Route exact path="/"> <Home /> </Route>
+          <ChakraProvider>
+            <Flex m="4">
+              <FilterContainer search={this.state.search} handleSearch={this.handleSearch}/> 
+              <Spacer />
+                <Route exact path="/"> <Home /> </Route>
 
-            <Route path="/recipes" render={(routerProps) =>
-              <RecipeContainer recipes={this.state.recipes.filter(recipe => recipe.name.toLowerCase().includes(this.state.search.toLowerCase()))} {...routerProps} />} />
+                <Route path="/recipes" render={(routerProps) =>
+                  <RecipeContainer recipes={this.filter()} {...routerProps} />} />
+            </Flex>
+          </ChakraProvider>
         
             <Route path='/NewRecipeForm' render={(routerProps) =>
               <NewRecipeForm {...routerProps} />} />

@@ -1,16 +1,16 @@
 import React from 'react'; 
 import RecipeComponent from './RecipeComponent';
+import { Box } from "@chakra-ui/react"
 
 class RecipeContainer extends React.Component {
    render() {
       return (
-         <div>
-            <h1>Recipes Page</h1>
-            {this.props.recipes.map((recipe) =>
-               <RecipeComponent key={recipe.id} recipe={recipe} />)}
-
-
-         </div>
+         // <div>
+            <Box w="78%">
+               {this.props.recipes.map((recipe) =>
+                  <RecipeComponent key={recipe.id} recipe={recipe} />)}
+            </Box>
+         
       )
    }
 }
