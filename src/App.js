@@ -1,5 +1,6 @@
 import React from "react";
-import './App.css'
+import './App.css'; 
+import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   BrowserRouter as Router,
   Route, 
@@ -20,7 +21,8 @@ const BASE_URL = "http://localhost:3000/recipes"
 class App extends React.Component {
 
   state = {
-    recipes: []
+    recipes: [],
+    search: ""
   }
 
   componentDidMount() {
@@ -30,6 +32,12 @@ class App extends React.Component {
         recipes: recipeData
     }))
     
+  }
+
+  handleSearch = (e) => {
+    this.setState({
+      search: e.target.value
+    })
   }
 
   render() {
@@ -45,12 +53,12 @@ class App extends React.Component {
           </nav>
 
           <NavbarContainer />
-          <FilterContainer /> 
+          <FilterContainer search={this.state.search} handleSearch={this.handleSearch}/> 
        
             <Route exact path="/"> <Home /> </Route>
 
             <Route path="/recipes" render={(routerProps) =>
-              <RecipeContainer recipes={this.state.recipes} {...routerProps} />} />
+              <RecipeContainer recipes={this.state.recipes.filter(recipe => recipe.name.toLowerCase().includes(this.state.search.toLowerCase()))} {...routerProps} />} />
         
             <Route path='/NewRecipeForm' render={(routerProps) =>
               <NewRecipeForm {...routerProps} />} />

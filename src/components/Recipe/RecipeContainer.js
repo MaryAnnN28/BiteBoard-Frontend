@@ -6,7 +6,8 @@ class RecipeContainer extends React.Component {
       return (
          <div>
             <h1>Recipes Page</h1>
-            {this.props.recipes.map((recipe) => <RecipeComponent key={recipe.id} recipe={recipe} /> )}
+            {this.props.recipes.map((recipe) =>
+               <RecipeComponent key={recipe.id} recipe={recipe} />)}
 
 
          </div>
