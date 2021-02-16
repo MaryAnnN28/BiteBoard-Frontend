@@ -62,16 +62,16 @@ class App extends React.Component {
     return (
       <Router>
         <div>
-          <nav>
+          {/* <nav>
             <ul>
             <li><Link to="/">Home</Link> </li>
             <li><Link to="/recipes">Recipes</Link></li>
             <li><Link to="/NewRecipeForm">Add New Recipe</Link></li>  
             </ul>
-          </nav>
+          </nav> */}
 
-          <NavbarContainer />
           <ChakraProvider>
+            <NavbarContainer />
             <Flex m="6">
               <FilterContainer handleCategorySelect={this.handleCategorySelect} search={this.state.search} handleSearch={this.handleSearch} recipes={this.filter()}/> 
               <Spacer />
