@@ -23,7 +23,8 @@ class App extends React.Component {
 
   state = {
     recipes: [],
-    search: ""
+    search: "",
+    category: ""
   }
 
   componentDidMount() {
@@ -42,7 +43,19 @@ class App extends React.Component {
   }
 
   filter = () => {
-    return this.state.recipes.filter(recipe => recipe.name.toLowerCase().includes(this.state.search.toLowerCase()))
+    let recipes = this.state.recipes;
+    if (this.state.category !== "") {
+      recipes = recipes.filter(recipe => recipe.category === this.state.category)
+      return recipes.filter(recipe => recipe.name.toLowerCase().includes(this.state.search.toLowerCase()))
+    } else {
+      return this.state.recipes.filter(recipe => recipe.name.toLowerCase().includes(this.state.search.toLowerCase()))
+    }
+  }
+
+  handleCategorySelect = (e) => {
+    this.setState({
+      category: e.target.value
+    })
   }
 
   render() {
@@ -60,7 +73,7 @@ class App extends React.Component {
           <NavbarContainer />
           <ChakraProvider>
             <Flex m="4">
-              <FilterContainer search={this.state.search} handleSearch={this.handleSearch}/> 
+              <FilterContainer handleCategorySelect={this.handleCategorySelect} search={this.state.search} handleSearch={this.handleSearch} recipes={this.filter()}/> 
               <Spacer />
                 <Route exact path="/"> <Home /> </Route>
 

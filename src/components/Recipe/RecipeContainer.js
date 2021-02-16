@@ -5,10 +5,12 @@ import { Box } from "@chakra-ui/react"
 class RecipeContainer extends React.Component {
    render() {
       return (
-         // <div>
-            <Box w="78%">
-               {this.props.recipes.map((recipe) =>
-                  <RecipeComponent key={recipe.id} recipe={recipe} />)}
+            <Box w="78.5%">
+               {this.props.recipes.length > 0 ? 
+                  this.props.recipes.map((recipe) =>
+                     <RecipeComponent key={recipe.id} recipe={recipe} />)
+                  : <h1>No matches</h1>
+               }
             </Box>
          
       )
