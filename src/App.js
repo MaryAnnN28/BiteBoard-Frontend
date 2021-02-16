@@ -13,6 +13,7 @@ import NavbarContainer from './components/Navbar/NavbarContainer';
 import RecipeContainer from './components/Recipe/RecipeContainer'; 
 import FilterContainer from './components/Filter/FilterContainer'; 
 import NewRecipeForm from './components/Recipe/NewRecipeForm'; 
+import RecipeComponent from "./components/Recipe/RecipeComponent";
 
 
 const BASE_URL = "http://localhost:3000/recipes"
@@ -52,6 +53,7 @@ class App extends React.Component {
 
             <Route path="/recipes" render={(routerProps) =>
               <RecipeContainer recipes={this.state.recipes} {...routerProps} />} />
+            
         
             <Route path='/NewRecipeForm' render={(routerProps) =>
               <NewRecipeForm {...routerProps} />} />

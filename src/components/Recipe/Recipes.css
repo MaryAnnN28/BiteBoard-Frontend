@@ -1,23 +1,25 @@
-div.card-deck {
+/* div.card-deck {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-}
+} */
 
 
-div.card {
-  flex: 0 1 30%;
-   width: 90%;
-   object-fit: cover;
-   background-color: white;
+.card {
+  display: inline-grid; 
+  width: 17rem;
+  height: 20rem;
+  flex: 0 1 25%;   
+  background-color: white;
    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-   margin-bottom: 25px;
+  margin: 1.5rem 2rem;
+ 
  }
 
 
  .card-title {
    color: #244D0C;
-   font-size: 15px;
+   font-size: 16px;
  }
 
  .card-text {
@@ -31,3 +33,26 @@ div.card {
  .text-muted {
    font-size: 11px;
  }
+ 
+
+ /* Styling for grid in RecipeContainer.js  */
+
+ div.recipe-collection {
+   margin-left: 50px;
+   margin: 2rem;
+ }
+
+
+
+/* Styling for the NewRecipeFrom  */
+
+.form-container {
+  margin-left: 50px;
+  border-style: hidden;
+  width: 55%;
+}
+
+.form-control {
+  width: 75%;
+  margin-bottom: 10px;
+}
