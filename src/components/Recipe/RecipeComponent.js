@@ -15,7 +15,7 @@ class RecipeComponent extends Component {
 
     render() {
       return (
-        <Box>
+        <Box onClick={() => console.log(this.props.recipe.name)}>
 
             <div className="card" onClick ={() => this.handleClick()}>
             <img class="card-img-top" src={this.props.recipe.image_url} class="card-img-top" width="100%" alt=""/>

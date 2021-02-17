@@ -23,6 +23,9 @@ class App extends React.Component {
   state = {
     recipes: [],
     search: "",
+    filterCategory: "",
+    filterDifficulty: "",
+    sortFilter: "none",
     category: "",
     page: "home",
     name: "", 
@@ -52,17 +55,35 @@ class App extends React.Component {
 
   filter = () => {
     let recipes = this.state.recipes;
-    if (this.state.category !== "") {
-      recipes = recipes.filter(recipe => recipe.category === this.state.category)
-      return recipes.filter(recipe => recipe.name.toLowerCase().includes(this.state.search.toLowerCase()))
-    } else {
-      return this.state.recipes.filter(recipe => recipe.name.toLowerCase().includes(this.state.search.toLowerCase()))
-    }
+
+    if (this.state.filterCategory !== "") {
+      recipes = recipes.filter(recipe => recipe.category === this.state.filterCategory)
+    } ;
+
+    if (this.state.filterDifficulty !== "") {
+      recipes = recipes.filter(recipe => recipe.difficulty === this.state.filterDifficulty)
+    } ;
+
+    if (this.state.sortFilter !== "none") {
+      this.state.sortFilter === "Cook Time"
+        ? recipes = recipes.sort((a, b) => (+(a.cook_time.split("-")[0]) > +(b.cook_time.split("-")[0]) ? 1 : -1))
+        : recipes = recipes.sort((a, b) => (+(a.rating.split(" ")[0]) < +(b.rating.split(" ")[0]) ? 1 : -1))
+    };
+
+    recipes = recipes.filter(recipe => recipe.name.toLowerCase().includes(this.state.search.toLowerCase()));
+
+    return recipes
   }
 
   handleCategorySelect = (e) => {
     this.setState({
-      category: e.target.value
+      filterCategory: e.target.value
+    })
+  }
+
+  handleDifficultySelect = (e) => {
+    this.setState({
+      filterDifficulty: e.target.value
     })
   }
 
@@ -106,10 +127,15 @@ class App extends React.Component {
     })
   }
 
+  handleSort = (e) => {
+    this.setState({
+      sortFilter: e.target.value
+    })
+  }
+
   // showRecipeDetails = () => {
 
   // }
-
 
 
   render() {
@@ -127,7 +153,7 @@ class App extends React.Component {
           <ChakraProvider>
             <NavbarContainer page={this.state.page}/>
             <Flex m="6">
-              <FilterContainer handleCategorySelect={this.handleCategorySelect} search={this.state.search} handleSearch={this.handleSearch} recipes={this.filter()}/> 
+              <FilterContainer handleSort={this.handleSort} sortFilter={this.state.sortFilter} handleDifficultySelect={this.handleDifficultySelect} handleCategorySelect={this.handleCategorySelect} search={this.state.search} handleSearch={this.handleSearch} recipes={this.filter()}/> 
               <Spacer />
 
         {/* Original code where recipes render on localhost:3000/recipes */}
@@ -150,6 +176,7 @@ class App extends React.Component {
           </ChakraProvider>
         
             <Route path='/NewRecipeForm' render={(routerProps) =>
+
             <NewRecipeForm formState={this.state} handleInputChange={this.handleInputChange} handleFormSubmit={this.handleFormSubmit} handlePageChange={this.handlePageChange} page={this.state.page} {...routerProps} />} />
           
             
