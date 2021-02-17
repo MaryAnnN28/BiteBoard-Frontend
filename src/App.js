@@ -36,7 +36,7 @@ class App extends React.Component {
     cook_time: "",
     ingredients: "",
     directions: "",
-    chosenRecipe: []
+    chosenRecipe: {}
   }
 
   componentDidMount() {
@@ -147,6 +147,12 @@ class App extends React.Component {
     })
   }
 
+  chooseRecipe = (recipe) => {
+    this.setState({
+      chosenRecipe: recipe
+    })
+  }
+
 
   render() {
     return (
@@ -171,7 +177,7 @@ class App extends React.Component {
                 <Route exact path="/"> <Home /> </Route>
 
                 <Route path="/recipes" render={(routerProps) =>
-                  <RecipeContainer recipeContainerUnmounted={this.recipeContainerUnmounted} recipes={this.filter()} {...routerProps} />} />
+                  <RecipeContainer chooseRecipe={this.chooseRecipe} recipeContainerUnmounted={this.recipeContainerUnmounted} recipes={this.filter()} {...routerProps} />} />
 
 
                 {/* <Route exact path="/" render={(routerProps) =>
@@ -188,11 +194,11 @@ class App extends React.Component {
             }
             <Route path='/NewRecipeForm' render={(routerProps) =>
 
-              <NewRecipeForm formState={this.state} handleInputChange={this.handleInputChange} handleFormSubmit={this.handleFormSubmit} handlePageChange={this.handlePageChange} page={this.state.page} {...routerProps} />} />
+              <NewRecipeForm formState={this.state} handleInputChange={this.handleInputChange} handleFormSubmit={this.handleFormSubmit} handlePageChange={this.handlePageChange} {...routerProps} />} />
 
             <Route path='/EditRecipeForm' render={(routerProps) =>
 
-              <EditRecipeForm page={this.state.page} {...routerProps} />} />
+              <EditRecipeForm {...this.state.chosenRecipe} handlePageChange={this.handlePageChange} {...routerProps} />} />
           </ChakraProvider>
 
 

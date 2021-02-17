@@ -19,7 +19,7 @@ class RecipeContainer extends React.Component {
               <AddRecipeCard />
                   {this.props.recipes.length > 0 ? 
                      this.props.recipes.map((recipe) =>
-                        <RecipeComponent key={recipe.id} recipe={recipe} />)
+                        <RecipeComponent key={recipe.id} chooseRecipe={this.props.chooseRecipe} recipe={recipe} />)
                      : <h1>No matches</h1>
               }
               

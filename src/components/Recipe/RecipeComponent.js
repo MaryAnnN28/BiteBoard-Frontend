@@ -1,34 +1,32 @@
-import React, { Component } from 'react'; 
+import React from 'react'; 
 import './Recipes.css';
 import { Box } from "@chakra-ui/react";
 import { useHistory } from 'react-router-dom';
 // import RecipeShowPage from './RecipeShowPage'; 
 
-class RecipeComponent extends Component {
-
+function RecipeComponent({recipe, chooseRecipe}) {
   
+  const history = useHistory();
+  const handleClick = () => {
+    chooseRecipe(recipe)
+    history.push('/EditRecipeForm')
+  };
   
-  handleClick() {
-    // return Modal 
-  }
+    return (
+      <Box onClick={handleClick}>
 
-
-    render() {
-      return (
-        <Box onClick={() => console.log(this.props.recipe.name)}>
-
-            <div className="card" onClick ={() => this.handleClick()}>
-            <img class="card-img-top" src={this.props.recipe.image_url} class="card-img-top" width="100%" alt=""/>
+            <div className="card" >
+            <img class="card-img-top" src={recipe.image_url} class="card-img-top" width="100%" alt=""/>
               <div class="card-body">
-                <center><h5 class="card-title">{this.props.recipe.name}</h5></center>
+                <center><h5 class="card-title">{recipe.name}</h5></center>
                 <p class="card-text">
-                  <center> <strong>{this.props.recipe.category}</strong>  </center>
+                  <center> <strong>{recipe.category}</strong>  </center>
                   <br />
-                  <strong>Level: </strong>{this.props.recipe.difficulty} &nbsp; &nbsp; &nbsp;
+                  <strong>Level: </strong>{recipe.difficulty} &nbsp; &nbsp; &nbsp;
               
-                <strong>Rating: </strong> {this.props.recipe.rating}
+                <strong>Rating: </strong> {recipe.rating}
                 <br />
-                Cook Time &nbsp; <strong>{this.props.recipe.cook_time}</strong>
+                Cook Time &nbsp; <strong>{recipe.cook_time}</strong>
                 </p>
               
               </div>
@@ -36,10 +34,8 @@ class RecipeComponent extends Component {
 {/*           
           <Route path={`${match.url}/:recipeID`} render={routerProps => <RecipeShowPage {...routerProps} recipe={recipe} />} />
            */}
-        </Box>
-         
+        </Box> 
       );
-    }
 }
 
 export default RecipeComponent; 

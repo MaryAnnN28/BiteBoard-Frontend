@@ -75,36 +75,36 @@ class NewRecipeForm extends React.Component {
     <div className="form-group">
       <label for="recipe-rating" className="col-sm-2 col-form-label">Rating</label> 
         <div className="form-check form-check-inline">
-            <input className="form-check-input" type="radio" name="rating" value={"1of5"}
-            checked={this.props.formState.rating === "1of5"} 
+            <input className="form-check-input" type="radio" name="rating" value={"1 of 5"}
+            checked={this.props.formState.rating === "1 of 5"} 
             onChange={handleInputChange}
             />
           <label className="form-check-label" for="inlineRadio1">1</label>
         </div>
         <div className="form-check form-check-inline">
-            <input className="form-check-input" type="radio" name="rating" value={"2of5"}
-            checked={this.props.formState.rating === "2of5"} 
+            <input className="form-check-input" type="radio" name="rating" value={"2 of 5"}
+            checked={this.props.formState.rating === "2 of 5"} 
             onChange={handleInputChange}
             />
           <label className="form-check-label" for="inlineRadio2">2</label>
         </div>
         <div className="form-check form-check-inline">
-            <input className="form-check-input" type="radio" name="rating" value={"3of5"}
-            checked={this.props.formState.rating === "3of5"}
+            <input className="form-check-input" type="radio" name="rating" value={"3 of 5"}
+            checked={this.props.formState.rating === "3 of 5"}
             onChange={handleInputChange}
             />
           <label className="form-check-label" for="inlineRadio2">3</label>
         </div>
         <div className="form-check form-check-inline">
-            <input className="form-check-input" type="radio" name="rating" value={"4of5"}
-            checked={this.props.formState.rating  === "4of5"}
+            <input className="form-check-input" type="radio" name="rating" value={"4 of 5"}
+            checked={this.props.formState.rating  === "4 of 5"}
             onChange={handleInputChange}
             />
           <label className="form-check-label" for="inlineRadio2">4</label>
         </div>
         <div className="form-check form-check-inline">
-            <input className="form-check-input" type="radio" name="rating" value={"5of5"}
-              checked={this.props.formState.rating === "5of5"}
+            <input className="form-check-input" type="radio" name="rating" value={"5 of 5"}
+              checked={this.props.formState.rating === "5 of 5"}
               onChange={handleInputChange}
             />
           <label className="form-check-label" for="inlineRadio2">5</label>
@@ -118,24 +118,24 @@ class NewRecipeForm extends React.Component {
             </label> 
 
       <div className="form-check form-check-inline">
-          <input className="form-check-input" type="radio" name="difficulty" value={"easy"}
-          checked={this.props.formState.difficulty === "easy"} 
+          <input className="form-check-input" type="radio" name="difficulty" value={"Easy"}
+          checked={this.props.formState.difficulty === "Easy"} 
           onChange={handleInputChange}
           />
           <label className="form-check-label" for="inlineRadio1">Easy</label>
       </div>
             
       <div className="form-check form-check-inline">
-          <input className="form-check-input" type="radio" name="difficulty" value={"intermediate"}
-          checked={this.props.formState.difficulty  === "intermediate"} 
+          <input className="form-check-input" type="radio" name="difficulty" value={"Intermediate"}
+          checked={this.props.formState.difficulty  === "Intermediate"} 
           onChange={handleInputChange}
           />
           <label className="form-check-label" for="inlineRadio2">Intermediate</label>
       </div>
             
       <div className="form-check form-check-inline">
-          <input className="form-check-input" type="radio" name="difficulty" value={"difficult"}
-            checked={this.props.formState.difficulty === "difficult"} 
+          <input className="form-check-input" type="radio" name="difficulty" value={"Difficult"}
+            checked={this.props.formState.difficulty === "Difficult"} 
             onChange={handleInputChange}
           />
           <label className="form-check-label" for="inlineRadio2">Difficult</label>
