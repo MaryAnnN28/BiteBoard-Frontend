@@ -3,13 +3,10 @@ import './Recipes.css'
 
   class RecipeComponent extends Component {
     render() {
-  
- 
-
       return (
 
           <div className="card">
-          <img class="card-img-top" src={this.props.recipe.image_url} class="card-img-top" width="100%" />
+          <img class="card-img-top" src={this.props.recipe.image_url} class="card-img-top" width="100%" alt=""/>
             <div class="card-body">
               <center><h5 class="card-title">{this.props.recipe.name}</h5></center>
               <p class="card-text">
@@ -21,13 +18,9 @@ import './Recipes.css'
               <br />
               Cook Time &nbsp; <strong>{this.props.recipe.cook_time}</strong>
               </p>
-              {/* <small class="text-muted">                   
-              Cook Time &nbsp; <strong>{this.props.recipe.cook_time}</strong>
-              </small> */}
+            
             </div>
           </div>
-  
-
          
       );
     }
