@@ -10,7 +10,7 @@ function NavbarContainer({page}) {
          <Box p="2">
             {page === "home" ? 
             <Heading size="md">Welcome to AllBites!</Heading> 
-            :<Heading onClick={handleClick} size="md">Explore</Heading>
+            :<Heading onClick={handleClick} size="md">Explore All Recipes</Heading>
             }
          </Box>
          <Spacer />

@@ -152,32 +152,35 @@ class App extends React.Component {
 
           <ChakraProvider>
             <NavbarContainer page={this.state.page}/>
-            <Flex m="6">
-              <FilterContainer handleSort={this.handleSort} sortFilter={this.state.sortFilter} handleDifficultySelect={this.handleDifficultySelect} handleCategorySelect={this.handleCategorySelect} search={this.state.search} handleSearch={this.handleSearch} recipes={this.filter()}/> 
-              <Spacer />
-
-        {/* Original code where recipes render on localhost:3000/recipes */}
-                <Route exact path="/"> <Home /> </Route>
-
-                <Route path="/recipes" render={(routerProps) =>
-                <RecipeContainer recipes={this.filter()} {...routerProps} />} />
-              
-              
-              {/* <Route exact path="/" render={(routerProps) =>
-                <RecipeContainer showRecipeDetails={this.showRecipeDetails} recipes={this.filter()} {...routerProps} />} />
-
-                <Route path="/recipes" render={(routerProps) =>
-                <RecipeShowPage recipes={this.filter()} {...routerProps} />} /> */}
-              
-
-              
-
+            {this.state.page === "home"
+            ? <Flex m="6">
+                 <FilterContainer handleSort={this.handleSort} sortFilter={this.state.sortFilter} handleDifficultySelect={this.handleDifficultySelect} handleCategorySelect={this.handleCategorySelect} search={this.state.search} handleSearch={this.handleSearch} recipes={this.filter()}/> 
+                <Spacer />
+  
+          {/* Original code where recipes render on localhost:3000/recipes */}
+                  <Route exact path="/"> <Home /> </Route>
+  
+                  <Route path="/recipes" render={(routerProps) =>
+                  <RecipeContainer recipes={this.filter()} {...routerProps} />} />
+                
+                
+                {/* <Route exact path="/" render={(routerProps) =>
+                  <RecipeContainer showRecipeDetails={this.showRecipeDetails} recipes={this.filter()} {...routerProps} />} />
+  
+                  <Route path="/recipes" render={(routerProps) =>
+                  <RecipeShowPage recipes={this.filter()} {...routerProps} />} /> */}
             </Flex>
+                  : null
+              
+
+              
+                  
+                }
+                <Route path='/NewRecipeForm' render={(routerProps) =>
+    
+                <NewRecipeForm formState={this.state} handleInputChange={this.handleInputChange} handleFormSubmit={this.handleFormSubmit} handlePageChange={this.handlePageChange} page={this.state.page} {...routerProps} />} />
           </ChakraProvider>
         
-            <Route path='/NewRecipeForm' render={(routerProps) =>
-
-            <NewRecipeForm formState={this.state} handleInputChange={this.handleInputChange} handleFormSubmit={this.handleFormSubmit} handlePageChange={this.handlePageChange} page={this.state.page} {...routerProps} />} />
           
             
    

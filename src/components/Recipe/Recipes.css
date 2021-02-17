@@ -68,9 +68,9 @@
 /* Styling for the NewRecipeFrom  */
 
 .form-container {
-  margin-left: 250px;
+  margin-left: 200px;
   border-style: hidden;
-  width: 55%;
+  width: 80%;
 }
 
 .form-control {

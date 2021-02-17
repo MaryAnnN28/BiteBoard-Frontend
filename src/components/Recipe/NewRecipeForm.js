@@ -9,7 +9,7 @@ class NewRecipeForm extends React.Component {
   
 
   componentDidMount() {
-    return this.props.handlePageChange('other')
+    return this.props.handlePageChange('create')
   }
 
   componentWillUnmount() {
