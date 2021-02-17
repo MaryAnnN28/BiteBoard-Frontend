@@ -1,37 +1,67 @@
 import React from 'react'; 
-import './Recipes.css'
+import './Recipes.css';
+const BASE_URL = "http://localhost:3000/recipes/";
 
 
-class NewRecipeForm extends React.Component {
-  constructor() {
-    super()
-  }
+class EditRecipeForm extends React.Component {
   
+  state = {
+    name: this.props.name,
+    image_url: this.props.image_url,
+    rating: this.props.rating,
+    difficulty: this.props.difficulty,
+    cook_time: this.props.cook_time,
+    category: this.props.category,
+    directions: this.props.directions
+  }
 
   componentDidMount() {
-    return this.props.handlePageChange('create')
+    return this.props.handlePageChange('edit')
   }
 
   componentWillUnmount() {
     return this.props.handlePageChange('home')
   }
 
+  handleInputChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault()
+    const updatedRecipe = this.state
+
+    const reqPack = {
+        headers: {
+            "Content-Type": "application/json"
+        },
+        method: "PATCH",
+        body: JSON.stringify(updatedRecipe)
+    }
+
+    fetch(BASE_URL + this.props.id, reqPack)
+        .then(r => r.json())
+        .then(console.log)
+
+  }
+  
   render() {
-    const { name, image_url, category, rating, difficulty, cook_time, ingredients, directions, handleFormSubmit, handleInputChange } = this.props
-    
-    return (
+      const {name, image_url, rating, difficulty, cook_time, category, directions} = this.state
+      return (
       <div className="form-container"><br />
-        <h1>Add a New Recipe</h1>
+        <h1>Edit Recipe</h1>
         
         <form className="recipe-form"
-          onSubmit={handleFormSubmit}>
+          onSubmit={this.handleSubmit}>
           
     <div className="form-group">
       <label for="recipe-name" className="col-sm-2 col-form-label">Name</label>
       <div className="col-sm-10">
           <input type="text" name="name" className="form-control" id="inputRecipeName" placeholder="Enter recipe name"
           value={name}
-          onChange={handleInputChange} />
+          onChange={this.handleInputChange} />
       </div>
     </div>
           
@@ -41,7 +71,7 @@ class NewRecipeForm extends React.Component {
       <div className="col-sm-10">
           <input type="text" name="image_url" className="form-control" placeholder="Image url" alt=""
           value={image_url}
-          onChange={handleInputChange} />
+          onChange={this.handleInputChange} />
       </div>
     </div>
           
@@ -51,7 +81,7 @@ class NewRecipeForm extends React.Component {
         <div className="col-sm-10">
           <select name="category" className="form-control"
             value={category} 
-            onChange={handleInputChange}>
+            onChange={this.handleInputChange}>
             <option>Select a recipe category</option>
             <option>Seafood</option>
             <option>Beef</option>
@@ -76,36 +106,36 @@ class NewRecipeForm extends React.Component {
       <label for="recipe-rating" className="col-sm-2 col-form-label">Rating</label> 
         <div className="form-check form-check-inline">
             <input className="form-check-input" type="radio" name="rating" value={"1 of 5"}
-            checked={this.props.formState.rating === "1 of 5"} 
-            onChange={handleInputChange}
+            checked={rating === "1 of 5"} 
+            onChange={this.handleInputChange}
             />
           <label className="form-check-label" for="inlineRadio1">1</label>
         </div>
         <div className="form-check form-check-inline">
             <input className="form-check-input" type="radio" name="rating" value={"2 of 5"}
-            checked={this.props.formState.rating === "2 of 5"} 
-            onChange={handleInputChange}
+            checked={rating === "2 of 5"} 
+            onChange={this.handleInputChange}
             />
           <label className="form-check-label" for="inlineRadio2">2</label>
         </div>
         <div className="form-check form-check-inline">
             <input className="form-check-input" type="radio" name="rating" value={"3 of 5"}
-            checked={this.props.formState.rating === "3 of 5"}
-            onChange={handleInputChange}
+            checked={rating === "3 of 5"}
+            onChange={this.handleInputChange}
             />
           <label className="form-check-label" for="inlineRadio2">3</label>
         </div>
         <div className="form-check form-check-inline">
             <input className="form-check-input" type="radio" name="rating" value={"4 of 5"}
-            checked={this.props.formState.rating  === "4 of 5"}
-            onChange={handleInputChange}
+            checked={rating === "4 of 5"}
+            onChange={this.handleInputChange}
             />
           <label className="form-check-label" for="inlineRadio2">4</label>
         </div>
         <div className="form-check form-check-inline">
             <input className="form-check-input" type="radio" name="rating" value={"5 of 5"}
-              checked={this.props.formState.rating === "5 of 5"}
-              onChange={handleInputChange}
+              checked={rating === "5 of 5"}
+              onChange={this.handleInputChange}
             />
           <label className="form-check-label" for="inlineRadio2">5</label>
         </div>
@@ -119,24 +149,24 @@ class NewRecipeForm extends React.Component {
 
       <div className="form-check form-check-inline">
           <input className="form-check-input" type="radio" name="difficulty" value={"Easy"}
-          checked={this.props.formState.difficulty === "Easy"} 
-          onChange={handleInputChange}
+          checked={difficulty === "Easy"} 
+          onChange={this.handleInputChange}
           />
           <label className="form-check-label" for="inlineRadio1">Easy</label>
       </div>
             
       <div className="form-check form-check-inline">
           <input className="form-check-input" type="radio" name="difficulty" value={"Intermediate"}
-          checked={this.props.formState.difficulty  === "Intermediate"} 
-          onChange={handleInputChange}
+          checked={difficulty === "Intermediate"} 
+          onChange={this.handleInputChange}
           />
           <label className="form-check-label" for="inlineRadio2">Intermediate</label>
       </div>
             
       <div className="form-check form-check-inline">
           <input className="form-check-input" type="radio" name="difficulty" value={"Difficult"}
-            checked={this.props.formState.difficulty === "Difficult"} 
-            onChange={handleInputChange}
+            checked={difficulty === "Difficult"} 
+            onChange={this.handleInputChange}
           />
           <label className="form-check-label" for="inlineRadio2">Difficult</label>
       </div>
@@ -150,7 +180,7 @@ class NewRecipeForm extends React.Component {
             className="form-control"
             name="cook_time"
             value={cook_time}
-            onChange={handleInputChange}>
+            onChange={this.handleInputChange}>
               <option>Select time</option>
               <option value="0-10min">0-10 min</option>
               <option value="10-20min">10-20 min</option>
@@ -169,22 +199,6 @@ class NewRecipeForm extends React.Component {
           </select>
         </div>
     </div>
-          
-
-    <div className="form-group">
-      <label for="ingredients-textarea" className="col-sm-4 col-form-label">
-        Ingredients</label>
-      <textarea
-        name="ingredients"
-        className="form-control"
-        id="recipe-ingredients"
-        rows="4"
-        placeholder="Add each ingredient separated by a comma or semicolon (i.e. butter, salt, olive oil, etc...)"
-        value={ingredients}
-        onChange={handleInputChange}
-        >
-      </textarea>
-    </div>
 
           
     <div className="form-group">
@@ -195,9 +209,8 @@ class NewRecipeForm extends React.Component {
         className="form-control"
         id="recipe-directions"
         rows="4"
-        placeholder="Add each direction separated by a comma or semicolon (i.e. preheat oven to 350, chop onions, etc...)"
         value={directions}
-        onChange={handleInputChange}
+        onChange={this.handleInputChange}
         >
       </textarea>
     </div>
@@ -217,4 +230,4 @@ class NewRecipeForm extends React.Component {
   }
 }
 
-export default NewRecipeForm; 
+export default EditRecipeForm; 
