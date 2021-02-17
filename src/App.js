@@ -23,7 +23,8 @@ class App extends React.Component {
   state = {
     recipes: [],
     search: "",
-    category: ""
+    category: "",
+    page: "home"
   }
 
   componentDidMount() {
@@ -57,6 +58,12 @@ class App extends React.Component {
     })
   }
 
+  handlePageChange = (arg) => {
+    this.setState({
+      page: arg
+    })
+  }
+
   render() {
     return (
       <Router>
@@ -70,7 +77,7 @@ class App extends React.Component {
           </nav> */}
 
           <ChakraProvider>
-            <NavbarContainer />
+            <NavbarContainer page={this.state.page}/>
             <Flex m="6">
               <FilterContainer handleCategorySelect={this.handleCategorySelect} search={this.state.search} handleSearch={this.handleSearch} recipes={this.filter()}/> 
               <Spacer />
@@ -82,7 +89,7 @@ class App extends React.Component {
           </ChakraProvider>
         
             <Route path='/NewRecipeForm' render={(routerProps) =>
-              <NewRecipeForm {...routerProps} />} />
+              <NewRecipeForm handlePageChange={this.handlePageChange} page={this.state.page} {...routerProps} />} />
    
         </div>
       </Router>

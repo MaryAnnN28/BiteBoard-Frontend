@@ -4,6 +4,14 @@ import './Recipes.css'
 
 class NewRecipeForm extends React.Component {
 
+  componentDidMount() {
+    return this.props.handlePageChange('other')
+  }
+
+  componentWillUnmount() {
+    return this.props.handlePageChange('home')
+  }
+
    render() {
     return (
       <div class="form-container">
