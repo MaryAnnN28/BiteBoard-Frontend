@@ -3,8 +3,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   BrowserRouter as Router,
-  Route, 
-  Switch, 
+  Route,
   Link
 } from "react-router-dom";
 
@@ -24,7 +23,14 @@ class App extends React.Component {
     recipes: [],
     search: "",
     category: "",
-    page: "home"
+    page: "home",
+    name: "", 
+    image_url: "", 
+    rating: null, 
+    difficulty: null, 
+    cook_time: "", 
+    ingredients: "", 
+    directions: ""
   }
 
   componentDidMount() {
@@ -32,7 +38,7 @@ class App extends React.Component {
       .then(res => res.json())
       .then(recipeData => this.setState({
         recipes: recipeData
-    }))
+      }))
     
   }
 
@@ -64,6 +70,43 @@ class App extends React.Component {
     })
   }
 
+  handleInputChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
+  handleFormSubmit = (event) => {
+    event.preventDefault()
+    let newRecipe = {
+      name: event.target.name.value, 
+      image_url: event.target.image_url.value, 
+      category: event.target.category.value, 
+      rating: event.target.rating.value, 
+      difficulty: event.target.difficulty.value, 
+      cook_time: event.target.cook_time.value, 
+      ingredients: event.target.ingredients.value, 
+      directions: event.target.directions.value 
+    }
+    event.target.reset()
+
+    let reqPack = {
+      headers: { "Content-Type": "application/json" }, 
+      method: "POST", 
+      body: JSON.stringify(newRecipe)
+    }
+    fetch(BASE_URL, reqPack)
+      .then(resp => resp.json())
+      .then((newRecipeData) => {
+        this.setState({
+          recipes: [...this.state.recipes, newRecipeData]
+      })
+    })
+  }
+
+
+
+
   render() {
     return (
       <Router>
@@ -89,7 +132,9 @@ class App extends React.Component {
           </ChakraProvider>
         
             <Route path='/NewRecipeForm' render={(routerProps) =>
-              <NewRecipeForm handlePageChange={this.handlePageChange} page={this.state.page} {...routerProps} />} />
+              <NewRecipeForm handleFormSubmit={this.handleFormSubmit} handlePageChange={this.handlePageChange} page={this.state.page} {...routerProps} />} />
+          
+   
    
         </div>
       </Router>

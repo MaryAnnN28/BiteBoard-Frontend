@@ -68,7 +68,7 @@
 /* Styling for the NewRecipeFrom  */
 
 .form-container {
-  margin-left: 50px;
+  margin-left: 250px;
   border-style: hidden;
   width: 55%;
 }
@@ -78,4 +78,24 @@
   margin-bottom: 10px;
 }
 
-/* #A9A9A9 */
+.col-sm-2.col-form-label {
+  color: #244D0C;
+  font-weight:500;
+  margin-top: 10px;
+}
+
+.col-sm-4.col-form-label {
+  color: #244D0C;
+  font-weight:600;
+  margin-top: 10px;
+}
+
+.btn.btn-primary.mb-2 {
+  align-items:center;
+  background-color: #2e6310;
+  border-style: hidden;
+}
+
+::placeholder {
+  font-weight:200;
+}
