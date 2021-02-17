@@ -12,7 +12,7 @@ import NavbarContainer from './components/Navbar/NavbarContainer';
 import RecipeContainer from './components/Recipe/RecipeContainer'; 
 import FilterContainer from './components/Filter/FilterContainer'; 
 import NewRecipeForm from './components/Recipe/NewRecipeForm'; 
-import RecipeShowPage from './components/Recipe/RecipeShowPage'; 
+// import RecipeModal from './components/Recipe/RecipeModal'; 
 import { ChakraProvider, Flex, Spacer } from "@chakra-ui/react";
 
 
