@@ -1,13 +1,23 @@
 import React, { Component } from 'react'; 
 import './Recipes.css';
 import { Box } from "@chakra-ui/react";
+import { useHistory } from 'react-router-dom';
+// import RecipeShowPage from './RecipeShowPage'; 
 
-  class RecipeComponent extends Component {
+class RecipeComponent extends Component {
+
+  
+  
+  handleClick() {
+    // return Modal 
+  }
+
+
     render() {
       return (
         <Box>
 
-            <div className="card">
+            <div className="card" onClick ={() => this.handleClick()}>
             <img class="card-img-top" src={this.props.recipe.image_url} class="card-img-top" width="100%" alt=""/>
               <div class="card-body">
                 <center><h5 class="card-title">{this.props.recipe.name}</h5></center>
@@ -22,7 +32,10 @@ import { Box } from "@chakra-ui/react";
                 </p>
               
               </div>
-            </div>
+          </div>
+{/*           
+          <Route path={`${match.url}/:recipeID`} render={routerProps => <RecipeShowPage {...routerProps} recipe={recipe} />} />
+           */}
         </Box>
          
       );
