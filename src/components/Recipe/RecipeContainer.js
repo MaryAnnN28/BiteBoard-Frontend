@@ -8,6 +8,9 @@ import { SimpleGrid, Box } from "@chakra-ui/react";
 
 class RecipeContainer extends React.Component {
 
+   componentWillUnmount() {
+      return this.props.recipeContainerUnmounted()
+   }
 
    render() {
      return (
