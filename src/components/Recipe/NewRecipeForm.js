@@ -71,15 +71,15 @@ class NewRecipeForm extends React.Component {
     <div className="form-group">
       <label for="recipe-rating" className="col-sm-2 col-form-label">Rating</label> 
         <div className="form-check form-check-inline">
-            <input className="form-check-input" type="radio" name="rating" value={rating}
-            checked={rating === "1of5"} 
+            <input className="form-check-input" type="radio" name="rating" value={"1of5"}
+            checked={this.props.formState.rating === "1of5"} 
             onChange={handleInputChange}
             />
           <label className="form-check-label" for="inlineRadio1">1</label>
         </div>
         <div className="form-check form-check-inline">
             <input className="form-check-input" type="radio" name="rating" value={rating}
-            checked={rating === "2of5"} 
+            checked={this.props.formState.rating === "2of5"} 
             onChange={handleInputChange}
             />
           <label className="form-check-label" for="inlineRadio2">2</label>

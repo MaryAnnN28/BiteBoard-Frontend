@@ -22,6 +22,8 @@ class App extends React.Component {
   state = {
     recipes: [],
     search: "",
+    filterCategory: "",
+    filterDifficulty: "",
     category: "",
     page: "home",
     name: "", 
@@ -50,17 +52,29 @@ class App extends React.Component {
 
   filter = () => {
     let recipes = this.state.recipes;
-    if (this.state.category !== "") {
-      recipes = recipes.filter(recipe => recipe.category === this.state.category)
-      return recipes.filter(recipe => recipe.name.toLowerCase().includes(this.state.search.toLowerCase()))
-    } else {
-      return this.state.recipes.filter(recipe => recipe.name.toLowerCase().includes(this.state.search.toLowerCase()))
-    }
+
+    if (this.state.filterCategory !== "") {
+      recipes = recipes.filter(recipe => recipe.category === this.state.filterCategory)
+    } ;
+
+    if (this.state.filterDifficulty !== "") {
+      recipes = recipes.filter(recipe => recipe.difficulty === this.state.filterDifficulty)
+    } ;
+
+    recipes = recipes.filter(recipe => recipe.name.toLowerCase().includes(this.state.search.toLowerCase()));
+
+    return recipes
   }
 
   handleCategorySelect = (e) => {
     this.setState({
-      category: e.target.value
+      filterCategory: e.target.value
+    })
+  }
+
+  handleDifficultySelect = (e) => {
+    this.setState({
+      filterDifficulty: e.target.value
     })
   }
 
@@ -122,7 +136,7 @@ class App extends React.Component {
           <ChakraProvider>
             <NavbarContainer page={this.state.page}/>
             <Flex m="6">
-              <FilterContainer handleCategorySelect={this.handleCategorySelect} search={this.state.search} handleSearch={this.handleSearch} recipes={this.filter()}/> 
+              <FilterContainer handleDifficultySelect={this.handleDifficultySelect} handleCategorySelect={this.handleCategorySelect} search={this.state.search} handleSearch={this.handleSearch} recipes={this.filter()}/> 
               <Spacer />
                 <Route exact path="/"> <Home /> </Route>
 
@@ -132,7 +146,7 @@ class App extends React.Component {
           </ChakraProvider>
         
             <Route path='/NewRecipeForm' render={(routerProps) =>
-              <NewRecipeForm handleFormSubmit={this.handleFormSubmit} handlePageChange={this.handlePageChange} page={this.state.page} {...routerProps} />} />
+              <NewRecipeForm formState={this.state} handleInputChange={this.handleInputChange} handleFormSubmit={this.handleFormSubmit} handlePageChange={this.handlePageChange} page={this.state.page} {...routerProps} />} />
           
    
    

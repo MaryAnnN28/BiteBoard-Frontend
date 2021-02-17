@@ -5,7 +5,7 @@ import { Box } from "@chakra-ui/react";
   class RecipeComponent extends Component {
     render() {
       return (
-        <Box>
+        <Box onClick={() => console.log(this.props.recipe.name)}>
 
             <div className="card">
             <img class="card-img-top" src={this.props.recipe.image_url} class="card-img-top" width="100%" alt=""/>

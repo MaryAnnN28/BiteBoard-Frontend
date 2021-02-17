@@ -2,11 +2,12 @@ import React from 'react';
 import { Box, Input, InputGroup, InputLeftAddon } from "@chakra-ui/react";
 import { SearchIcon } from '@chakra-ui/icons';
 import CategorySelect from './CategorySelect';
+import DifficultySelect from './DifficultySelect';
 
 
 class FilterContainer extends React.Component {
    render() {
-      const { search, handleSearch, recipes, handleCategorySelect } = this.props
+      const { search, handleSearch, recipes, handleCategorySelect, handleDifficultySelect } = this.props
       return (
             <Box w="20%">
                <InputGroup>
@@ -14,6 +15,7 @@ class FilterContainer extends React.Component {
                   <Input placeholder="search" value={search} onChange={handleSearch}/>
                </InputGroup>
                <CategorySelect handleCategorySelect={handleCategorySelect} recipes={recipes}/>
+               <DifficultySelect handleDifficultySelect={handleDifficultySelect}/>
             </Box>
       )
    }
