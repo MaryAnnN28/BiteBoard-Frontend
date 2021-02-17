@@ -99,3 +99,16 @@
 ::placeholder {
   font-weight:200;
 }
+
+
+/* Styling for RecipeShowPage */
+
+.recipe-show-page-container {
+  align-content: center;
+}
+
+.recipe-show-page-title {
+  font-size: xx-large;
+  align-content: center;
+  text-align: center;
+}
