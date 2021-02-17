@@ -4,6 +4,13 @@ import './Recipes.css'
 
 class NewRecipeForm extends React.Component {
 
+  componentDidMount() {
+    return this.props.handlePageChange('other')
+  }
+
+  componentWillUnmount() {
+    return this.props.handlePageChange('home')
+  }
 
   render() {
     const { name, image_url, category, rating, difficulty, cook_time, ingredients, directions, handleFormSubmit, handleInputChange } = this.props

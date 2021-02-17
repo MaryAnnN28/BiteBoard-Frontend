@@ -3,7 +3,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   BrowserRouter as Router,
-  Route, 
+  Route,
   Link
 } from "react-router-dom";
 
@@ -15,15 +15,15 @@ import NewRecipeForm from './components/Recipe/NewRecipeForm';
 import { ChakraProvider, Flex, Spacer } from "@chakra-ui/react";
 
 
-const BASE_URL = "http://localhost:3000/recipes"
-// const RECIPE_URL = "http://localhost:3000/recipes/1"
+const BASE_URL = "http://localhost:3000/recipes/"
 
 class App extends React.Component {
 
   state = {
     recipes: [],
     search: "",
-    category: "", 
+    category: "",
+    page: "home",
     name: "", 
     image_url: "", 
     rating: null, 
@@ -64,6 +64,11 @@ class App extends React.Component {
     })
   }
 
+  handlePageChange = (arg) => {
+    this.setState({
+      page: arg
+    })
+  }
 
   handleInputChange = (event) => {
     this.setState({
@@ -106,17 +111,17 @@ class App extends React.Component {
     return (
       <Router>
         <div>
-          <nav>
+          {/* <nav>
             <ul>
             <li><Link to="/">Home</Link> </li>
             <li><Link to="/recipes">Recipes</Link></li>
             <li><Link to="/NewRecipeForm">Add New Recipe</Link></li>  
             </ul>
-          </nav>
+          </nav> */}
 
-          <NavbarContainer />
           <ChakraProvider>
-            <Flex m="4">
+            <NavbarContainer page={this.state.page}/>
+            <Flex m="6">
               <FilterContainer handleCategorySelect={this.handleCategorySelect} search={this.state.search} handleSearch={this.handleSearch} recipes={this.filter()}/> 
               <Spacer />
                 <Route exact path="/"> <Home /> </Route>
@@ -126,11 +131,10 @@ class App extends React.Component {
             </Flex>
           </ChakraProvider>
         
+            <Route path='/NewRecipeForm' render={(routerProps) =>
+              <NewRecipeForm handleFormSubmit={this.handleFormSubmit} handlePageChange={this.handlePageChange} page={this.state.page} {...routerProps} />} />
           
-          <Route path='/NewRecipeForm' render={(routerProps) =>
-            <NewRecipeForm recipes={this.filter()}
-            handleFormSubmit={this.handleFormSubmit}
-              {...routerProps} />} />
+   
    
         </div>
       </Router>
