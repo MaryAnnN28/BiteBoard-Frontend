@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   BrowserRouter as Router,
   Route, 
-  // Switch, 
+  Switch, 
   Link
 } from "react-router-dom";
 
@@ -16,8 +16,7 @@ import NewRecipeForm from './components/Recipe/NewRecipeForm';
 import { ChakraProvider, Flex, Spacer } from "@chakra-ui/react";
 
 
-const BASE_URL = "http://localhost:3000/recipes"
-// const RECIPE_URL = "http://localhost:3000/recipes/1"
+const BASE_URL = "http://localhost:3000/recipes/"
 
 class App extends React.Component {
 

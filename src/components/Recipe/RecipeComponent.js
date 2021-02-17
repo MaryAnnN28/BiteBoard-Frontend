@@ -1,5 +1,6 @@
 import React, { Component } from 'react'; 
 import './Recipes.css';
+import { Box } from "@chakra-ui/react";
 
   class RecipeComponent extends Component {
     render() {
@@ -7,25 +8,27 @@ import './Recipes.css';
  
 
       return (
+        <Box>
 
-          <div className="card">
-          <img class="card-img-top" src={this.props.recipe.image_url} class="card-img-top" width="100%" />
-            <div class="card-body">
-              <center><h5 class="card-title">{this.props.recipe.name}</h5></center>
-              <p class="card-text">
-                <center> <strong>{this.props.recipe.category}</strong>  </center>
+            <div className="card">
+            <img class="card-img-top" src={this.props.recipe.image_url} class="card-img-top" width="100%" />
+              <div class="card-body">
+                <center><h5 class="card-title">{this.props.recipe.name}</h5></center>
+                <p class="card-text">
+                  <center> <strong>{this.props.recipe.category}</strong>  </center>
+                  <br />
+                  <strong>Level: </strong>{this.props.recipe.difficulty} &nbsp; &nbsp; &nbsp;
+              
+                <strong>Rating: </strong> {this.props.recipe.rating}
                 <br />
-                <strong>Level: </strong>{this.props.recipe.difficulty} &nbsp; &nbsp; &nbsp;
-            
-              <strong>Rating: </strong> {this.props.recipe.rating}
-              <br />
-              Cook Time &nbsp; <strong>{this.props.recipe.cook_time}</strong>
-              </p>
-              {/* <small class="text-muted">                   
-              Cook Time &nbsp; <strong>{this.props.recipe.cook_time}</strong>
-              </small> */}
+                Cook Time &nbsp; <strong>{this.props.recipe.cook_time}</strong>
+                </p>
+                {/* <small class="text-muted">                   
+                Cook Time &nbsp; <strong>{this.props.recipe.cook_time}</strong>
+                </small> */}
+              </div>
             </div>
-          </div>
+        </Box>
   
 
          
