@@ -1,7 +1,7 @@
 import React from 'react'; 
 import AddRecipeCard from './AddRecipeCard'
 import RecipeComponent from './RecipeComponent';
-import RecipeShowPage from './RecipeShowPage'; 
+
 
 import { SimpleGrid, Box } from "@chakra-ui/react";
 

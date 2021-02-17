@@ -14,6 +14,8 @@ import FilterContainer from './components/Filter/FilterContainer';
 import NewRecipeForm from './components/Recipe/NewRecipeForm';
 import EditRecipeForm from './components/Recipe/EditRecipeForm';
 import RecipeShowPage from './components/Recipe/RecipeShowPage';
+// import RecipeModal from './components/Recipe/RecipeModal'; 
+
 import { ChakraProvider, Flex, Spacer } from "@chakra-ui/react";
 
 
