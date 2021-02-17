@@ -24,6 +24,7 @@ class App extends React.Component {
     search: "",
     filterCategory: "",
     filterDifficulty: "",
+    sortFilter: "none",
     category: "",
     page: "home",
     name: "", 
@@ -60,6 +61,12 @@ class App extends React.Component {
     if (this.state.filterDifficulty !== "") {
       recipes = recipes.filter(recipe => recipe.difficulty === this.state.filterDifficulty)
     } ;
+
+    if (this.state.sortFilter !== "none") {
+      this.state.sortFilter === "Cook Time"
+        ? recipes = recipes.sort((a, b) => (+(a.cook_time.split("-")[0]) > +(b.cook_time.split("-")[0]) ? 1 : -1))
+        : recipes = recipes.sort((a, b) => (+(a.rating.split(" ")[0]) < +(b.rating.split(" ")[0]) ? 1 : -1))
+    };
 
     recipes = recipes.filter(recipe => recipe.name.toLowerCase().includes(this.state.search.toLowerCase()));
 
@@ -118,7 +125,11 @@ class App extends React.Component {
     })
   }
 
-
+  handleSort = (e) => {
+    this.setState({
+      sortFilter: e.target.value
+    })
+  }
 
 
   render() {
@@ -136,7 +147,7 @@ class App extends React.Component {
           <ChakraProvider>
             <NavbarContainer page={this.state.page}/>
             <Flex m="6">
-              <FilterContainer handleDifficultySelect={this.handleDifficultySelect} handleCategorySelect={this.handleCategorySelect} search={this.state.search} handleSearch={this.handleSearch} recipes={this.filter()}/> 
+              <FilterContainer handleSort={this.handleSort} sortFilter={this.state.sortFilter} handleDifficultySelect={this.handleDifficultySelect} handleCategorySelect={this.handleCategorySelect} search={this.state.search} handleSearch={this.handleSearch} recipes={this.filter()}/> 
               <Spacer />
                 <Route exact path="/"> <Home /> </Route>
 
