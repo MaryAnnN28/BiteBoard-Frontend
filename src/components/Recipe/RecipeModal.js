@@ -60,24 +60,14 @@ const RecipeModal = ({ handleClose, show, recipe, chooseRecipe, deleteRecipe }) 
                </ul>
      
                <br/>
-               <strong>Ingredients:</strong>
-               <ul>
-                  {recipe.recipe_ingredients.map(ingredient => <li>{ingredient.ingredient.name} - {ingredient.measurement}</li>)}
+               <ul class="text-content">
+                  <li><div class="key"><strong>Ingredients:</strong></div></li>
+                  {recipe.recipe_ingredients ? recipe.recipe_ingredients.map(ingredient => <li>{ingredient.ingredient.name} - {ingredient.measurement}</li>) : null}
                </ul>
                <br/>
-               {/* <UnorderedList>
-                  {recipe.recipe_ingredients.map(ingredient => {
-                     <ListItem>
-                        <ListIcon as={ArrowRightIcon} color="green" />
-                        {ingredient.ingredient.name} - {ingredient.measurement}
-                     </ListItem>
-                  })}
-               </UnorderedList> */}
                <p class="text-content"><strong>Directions:</strong> {recipe.directions}</p>
+            <center>
                <Box>
-                  {/* <Button mr="4" onClick={handleClick} rightIcon={<EditIcon />} colorScheme="green" variant="outline">
-                     Edit
-                  </Button> */}
                   <IconButton
                      variant="outline"
                      colorScheme="green"
@@ -99,6 +89,7 @@ const RecipeModal = ({ handleClose, show, recipe, chooseRecipe, deleteRecipe }) 
                   />
                </Box>
 
+            </center>
        
          </section>
 
