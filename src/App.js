@@ -137,7 +137,9 @@ class App extends React.Component {
       .then(resp => resp.json())
       .then((newRecipeData) => {
         this.setState({
-          recipes: [...this.state.recipes, newRecipeData]
+          recipes: [...this.state.recipes, newRecipeData],
+          rating: null,
+          difficulty: null
         })
       })
   }
