@@ -56,6 +56,12 @@ class App extends React.Component {
     })
   }
 
+  deleteRecipe = (deletedRecipe) => {
+    this.setState({
+      recipes: this.state.recipes.filter(recipe => recipe !== deletedRecipe)
+    })
+  }
+
   handleSearch = (e) => {
     this.setState({
       search: e.target.value
@@ -182,7 +188,7 @@ class App extends React.Component {
                 <Route exact path="/"> <Home /> </Route>
 
                 <Route path="/recipes" render={(routerProps) =>
-                  <RecipeContainer chooseRecipe={this.chooseRecipe} recipeContainerUnmounted={this.recipeContainerUnmounted} recipes={this.filter()} {...routerProps} />} />
+                  <RecipeContainer deleteRecipe={this.deleteRecipe} chooseRecipe={this.chooseRecipe} recipeContainerUnmounted={this.recipeContainerUnmounted} recipes={this.filter()} {...routerProps} />} />
 
 
                 {/* <Route exact path="/" render={(routerProps) =>

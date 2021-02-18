@@ -5,7 +5,7 @@ import RecipeModal from './RecipeModal';
 
 
 
-function RecipeComponent({recipe, chooseRecipe}) {
+function RecipeComponent({recipe, chooseRecipe, deleteRecipe}) {
    
    const [show, setShow] = useState(false);
   
@@ -34,7 +34,7 @@ function RecipeComponent({recipe, chooseRecipe}) {
         </Box>
 
         
-          <RecipeModal chooseRecipe={chooseRecipe} show={show} handleClose={() => setShow(false)} recipe={recipe}> 
+          <RecipeModal deleteRecipe={deleteRecipe} chooseRecipe={chooseRecipe} show={show} handleClose={() => setShow(false)} recipe={recipe}> 
             <p>Modal</p>
             
             

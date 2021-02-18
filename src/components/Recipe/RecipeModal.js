@@ -1,19 +1,29 @@
 import React from 'react';
 import './Modal.css';
-import { Button } from "@chakra-ui/react";
-import { EditIcon } from '@chakra-ui/icons';
+import { Button, IconButton, Box } from "@chakra-ui/react";
+import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
 import { useHistory } from 'react-router-dom';
 
+const BASE_URL = "http://localhost:3000/recipes/"
 
-const RecipeModal = ({ handleClose, show, recipe, chooseRecipe }) => {
+const RecipeModal = ({ handleClose, show, recipe, chooseRecipe, deleteRecipe }) => {
 
    const showHideClassName = show ? "modal display-block" : "modal display-none";
 
    const history = useHistory();
    const handleClick = () => {
-     chooseRecipe(recipe)
-     history.push('/EditRecipeForm')
+      chooseRecipe(recipe)
+      history.push('/EditRecipeForm')
    };
+
+   const handleDelete = () => {
+      fetch(BASE_URL + recipe.id, {method: "DELETE"})
+         .then(r => r.json())
+         .then(() => {
+            deleteRecipe(recipe)
+            handleClose()
+         })
+   }
 
    return (
       <div className={showHideClassName}>
@@ -33,9 +43,18 @@ const RecipeModal = ({ handleClose, show, recipe, chooseRecipe }) => {
 
                   {recipe.directions}
                </p>
-               <Button onClick={handleClick} rightIcon={<EditIcon />} colorScheme="green" variant="outline">
-                  Edit
-               </Button>
+               <Box>
+                  <Button mr="4" onClick={handleClick} rightIcon={<EditIcon />} colorScheme="green" variant="outline">
+                     Edit
+                  </Button>
+                  <IconButton
+                     variant="outline"
+                     colorScheme="green"
+                     aria-label="Delete recipe"
+                     icon={<DeleteIcon />}
+                     onClick={handleDelete}
+                  />
+               </Box>
 
 
             </center>
