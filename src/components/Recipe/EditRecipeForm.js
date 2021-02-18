@@ -29,6 +29,10 @@ class EditRecipeForm extends React.Component {
     })
   }
 
+  renderRecipes() {
+    this.props.history.push('/recipes');
+  }
+
   handleSubmit = (e) => {
     e.preventDefault()
     const updatedRecipe = this.state
@@ -43,7 +47,11 @@ class EditRecipeForm extends React.Component {
 
     fetch(BASE_URL + this.props.id, reqPack)
         .then(r => r.json())
-        .then(console.log)
+        .then(updatedRecipe => {
+            this.props.updateRecipe(updatedRecipe)
+            this.renderRecipes()
+            e.target.reset()
+        })
 
   }
   
@@ -220,7 +228,7 @@ class EditRecipeForm extends React.Component {
     <button
       type="submit"
       className="btn btn-primary mb-2">
-      Add Recipe
+      Edit Recipe
       </button>
 
   </form>
