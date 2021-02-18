@@ -17,13 +17,22 @@ function RecipeComponent({recipe, chooseRecipe, deleteRecipe}) {
 
             <div className="card" onClick={() => setShow(true)}>
             <img class="card-img-top" src={recipe.image_url} class="card-img-top" width="100%" alt=""/> 
-              
-            
+                                    
               <div class="card-body">
-                <center><h5 class="card-title">{recipe.name}</h5></center>
+              <center><h5 class="card-title">{recipe.name}</h5></center>
+
+              <div class="p-rating">
+                <button class="p-rating-star">☆</button>
+                <button class="p-rating-star">★</button>
+                <button class="p-rating-star">★</button>
+                <button class="p-rating-star">★</button>
+                <button class="p-rating-star">★</button>
+              </div>
+
+         
+              
                 <p class="card-text">
-                  <center> <strong>{recipe.category}</strong>  </center>
-                  <br />
+                  <strong>{recipe.category}</strong> <br />
                   <strong>Level: </strong>{recipe.difficulty} &nbsp; &nbsp; &nbsp;
               
                 <strong>Rating: </strong> {recipe.rating}
