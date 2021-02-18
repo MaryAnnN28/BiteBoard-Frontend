@@ -7,14 +7,15 @@ function NavbarContainer({page}) {
    const handleClick = () => history.push('/recipes');
    return (
       <Flex m="6" border="1px" borderColor="gray.200" rounded="lg" p="5">
-         <Box p="2">
+         <Box >
             {page === "home" ? 
-            <Heading size="md">Welcome to AllBites!</Heading> 
-            :<Heading onClick={handleClick} size="md">Explore All Recipes</Heading>
+            <Heading mt="2.5" pl="2" pb="2" size="md">Welcome to AllBites!</Heading> 
+            // :<Heading  size="md">Explore All Recipes</Heading>
+            : <Button size="lg" onClick={handleClick} colorScheme="green" variant="ghost">Explore All Recipes</Button>
             }
          </Box>
          <Spacer />
-         <Box>
+         <Box pt="1">
             <Button colorScheme="green" mr="4">Log in</Button>
             <Button colorScheme="green">
                Sign Up

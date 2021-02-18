@@ -13,7 +13,6 @@ import RecipeContainer from './components/Recipe/RecipeContainer';
 import FilterContainer from './components/Filter/FilterContainer';
 import NewRecipeForm from './components/Recipe/NewRecipeForm';
 import EditRecipeForm from './components/Recipe/EditRecipeForm';
-import RecipeShowPage from './components/Recipe/RecipeShowPage';
 // import RecipeModal from './components/Recipe/RecipeModal'; 
 
 import { ChakraProvider, Flex, Spacer } from "@chakra-ui/react";
@@ -22,6 +21,7 @@ import { ChakraProvider, Flex, Spacer } from "@chakra-ui/react";
 const BASE_URL = "http://localhost:3000/recipes/"
 
 class App extends React.Component {
+
 
   state = {
     recipes: [],
@@ -48,6 +48,18 @@ class App extends React.Component {
         recipes: recipeData
       }))
 
+  }
+
+  updateRecipe = (updatedRecipe) => {
+    this.setState({
+      recipes: this.state.recipes.map(recipe => recipe.id === updatedRecipe.id ? updatedRecipe : recipe)
+    })
+  }
+
+  deleteRecipe = (deletedRecipe) => {
+    this.setState({
+      recipes: this.state.recipes.filter(recipe => recipe !== deletedRecipe)
+    })
   }
 
   handleSearch = (e) => {
@@ -125,7 +137,9 @@ class App extends React.Component {
       .then(resp => resp.json())
       .then((newRecipeData) => {
         this.setState({
-          recipes: [...this.state.recipes, newRecipeData]
+          recipes: [...this.state.recipes, newRecipeData],
+          rating: null,
+          difficulty: null
         })
       })
   }
@@ -135,10 +149,6 @@ class App extends React.Component {
       sortFilter: e.target.value
     })
   }
-
-  // showRecipeDetails = () => {
-
-  // }
 
   recipeContainerUnmounted = () => {
     this.setState({
@@ -157,6 +167,7 @@ class App extends React.Component {
 
 
   render() {
+    
     return (
       <Router>
         <div>
@@ -179,7 +190,7 @@ class App extends React.Component {
                 <Route exact path="/"> <Home /> </Route>
 
                 <Route path="/recipes" render={(routerProps) =>
-                  <RecipeContainer chooseRecipe={this.chooseRecipe} recipeContainerUnmounted={this.recipeContainerUnmounted} recipes={this.filter()} {...routerProps} />} />
+                  <RecipeContainer deleteRecipe={this.deleteRecipe} chooseRecipe={this.chooseRecipe} recipeContainerUnmounted={this.recipeContainerUnmounted} recipes={this.filter()} {...routerProps} />} />
 
 
                 {/* <Route exact path="/" render={(routerProps) =>
@@ -200,7 +211,7 @@ class App extends React.Component {
 
             <Route path='/EditRecipeForm' render={(routerProps) =>
 
-              <EditRecipeForm {...this.state.chosenRecipe} handlePageChange={this.handlePageChange} {...routerProps} />} />
+              <EditRecipeForm updateRecipe={this.updateRecipe} {...this.state.chosenRecipe} handlePageChange={this.handlePageChange} {...routerProps} />} />
           </ChakraProvider>
 
 
