@@ -3,17 +3,17 @@ import './Recipes.css'
 
 
 class NewRecipeForm extends React.Component {
-  constructor() {
-    super()
-  }
   
-
   componentDidMount() {
     return this.props.handlePageChange('create')
   }
 
   componentWillUnmount() {
     return this.props.handlePageChange('home')
+  }
+
+  renderRecipes() {
+    this.props.history.push('/recipes');
   }
 
   render() {
@@ -23,7 +23,10 @@ class NewRecipeForm extends React.Component {
       <div className="form-container"><br />
         <h1 className="form-title">Add a New Recipe</h1>
         <form className="recipe-form"
-          onSubmit={handleFormSubmit}>
+          onSubmit={(e) => {
+            this.renderRecipes()
+            handleFormSubmit(e)
+          }}>
           
     <div className="form-group">
       <label for="recipe-name" className="col-sm-2 col-form-label">Name</label>

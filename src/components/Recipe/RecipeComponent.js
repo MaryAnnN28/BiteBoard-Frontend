@@ -5,24 +5,18 @@ import RecipeModal from './RecipeModal';
 
 
 
+function RecipeComponent({recipe, chooseRecipe, deleteRecipe}) {
 
- function RecipeComponent({recipe, chooseRecipe}) {
-  
-  // const history = useHistory();
-  // const handleClick = () => {
-  //   chooseRecipe(recipe)
-  //   history.push('/EditRecipeForm')
-  // };
    
    const [show, setShow] = useState(false);
   
     return (
       <div>
-      <Box>
+
+      <Box >
 
             <div className="card" onClick={() => setShow(true)}>
-            <img class="card-img-top" src={recipe.image_url} class="card-img-top" width="100%" alt="" /> 
-     
+            <img class="card-img-top" src={recipe.image_url} class="card-img-top" width="100%" alt=""/> 
               
             
               <div class="card-body">
@@ -45,7 +39,9 @@ import RecipeModal from './RecipeModal';
         </Box>
 
         
-          <RecipeModal show={show} handleClose={() => setShow(false)} recipe={recipe}> 
+
+          <RecipeModal deleteRecipe={deleteRecipe} chooseRecipe={chooseRecipe} show={show} handleClose={() => setShow(false)} recipe={recipe}> 
+
             <p>Modal</p>
             
             
