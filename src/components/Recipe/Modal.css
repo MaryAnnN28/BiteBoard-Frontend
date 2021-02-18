@@ -4,15 +4,15 @@
    left: 0;
    width: 100%;
    height: 100%;
-   background: rgba(0, 0, 0, 0.7);
-   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+   background: rgba(0, 0, 0, 0.8);
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.39);
  }
  
  .modal-main {
    position:fixed;
    background: white;
-   width: 60%;
-   height: 450px;
+   width: 50%;
+   height: 550px;
    max-height: 100%;
    top:50%;
    left:50%;
@@ -20,7 +20,7 @@
    overflow: auto;
  }
 
- 
+
  .display-block {
    display: block;
  }
@@ -29,25 +29,35 @@
    display: none;
  }
 
- h3 {
-   font-size: x-large;
+ .modal-class-btn {
+   align-content: right;
  }
 
- .modal-guts {
-
-   /* other stuff we already covered */
- 
-   /* cover the modal */
-   position: absolute;
-   top: 0;
-   left: 0;
-   width: 100%;
-   height: 100%;
- 
-   /* spacing as needed */
-   padding: 20px 50px 20px 20px;
- 
-   /* let it scroll */
-   overflow: auto;
-   
+ h3.recipe-title {
+   font-size: 26px;
+   font-family: 'system-ui';
+   color: #244D0C;
  }
+
+
+ .text-content {
+  margin: 0px;
+  padding: 0px;
+  margin-bottom: 10px;
+  padding-left: 50px;
+  padding-right: 50px;
+  font-size: 0.9rem;
+}
+
+.text-content > li {
+  list-style-type: none;
+  display: flex;
+  margin: 4px 0px;
+}
+
+.text-content > li > .key {
+  width: 100px;
+  color: #244D0C;
+}
+
+ 
