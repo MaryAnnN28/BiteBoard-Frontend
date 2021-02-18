@@ -1,6 +1,6 @@
 import React from 'react';
 import './Modal.css';
-import { IconButton, Box, UnorderedList, ListItem, ListIcon } from "@chakra-ui/react";
+import { IconButton, Box, UnorderedList, ListItem, ListIcon, AlertDialog, AlertDialogBody, AlertDialogFooter, AlertDialogContent, AlertDialogOverlay, AlertDialogHeader, Button } from "@chakra-ui/react";
 import { EditIcon, DeleteIcon, ArrowRightIcon } from '@chakra-ui/icons';
 import { useHistory } from 'react-router-dom';
 
@@ -24,6 +24,11 @@ const RecipeModal = ({ handleClose, show, recipe, chooseRecipe, deleteRecipe }) 
             handleClose()
          })
    }
+
+   // code for delete alert modal 
+   const [isOpen, setIsOpen] = React.useState(false)
+   const onClose = () => setIsOpen(false)
+   const cancelRef = React.useRef()
 
    return (
       <div className={showHideClassName}>
@@ -60,9 +65,13 @@ const RecipeModal = ({ handleClose, show, recipe, chooseRecipe, deleteRecipe }) 
                </ul>
      
                <br/>
-               <strong>Ingredients:</strong>
-               <ul>
-                  {recipe.recipe_ingredients.map(ingredient => <li>{ingredient.ingredient.name} - {ingredient.measurement}</li>)}
+               <div class="text-content"><strong>Ingredients</strong></div>
+               <ul className="ingredient-list">
+               {recipe.recipe_ingredients.map(ingredient =>
+                  <li>
+                  <div class="key">{ingredient.ingredient.name}</div>
+                  <div class="value">{ingredient.measurement}</div>
+                  </li>)}
                </ul>
                <br/>
                {/* <UnorderedList>
@@ -73,7 +82,8 @@ const RecipeModal = ({ handleClose, show, recipe, chooseRecipe, deleteRecipe }) 
                      </ListItem>
                   })}
                </UnorderedList> */}
-               <p class="text-content"><strong>Directions:</strong> {recipe.directions}</p>
+            <p class="text-content"><strong>Directions:</strong> {recipe.directions}</p>
+            <center>
                <Box>
                   {/* <Button mr="4" onClick={handleClick} rightIcon={<EditIcon />} colorScheme="green" variant="outline">
                      Edit
@@ -93,12 +103,43 @@ const RecipeModal = ({ handleClose, show, recipe, chooseRecipe, deleteRecipe }) 
                      colorScheme="green"
                      aria-label="Delete recipe"
                      icon={<DeleteIcon />}
-                     onClick={handleDelete}
+                     // onClick={handleDelete} <--- Directly deletes without alert
+                     onClick={() => setIsOpen(true)}
                      mt="6"
                      mb="6"
                   />
                </Box>
 
+               <AlertDialog
+                  isOpen={isOpen}
+                  leastDestructiveRef={cancelRef}
+                  onClose={onClose}
+               >
+                  <AlertDialogOverlay>
+                     <AlertDialogContent>
+                        <AlertDialogHeader fontSize="lg" fontWeight="bold">
+                          <strong>Delete Recipe</strong> 
+                        </AlertDialogHeader>
+
+                        <AlertDialogBody>
+                           Are you sure you want to delete the  
+                           <strong> {recipe.name}</strong> recipe? <br />
+                        </AlertDialogBody>
+                        <AlertDialogFooter>
+                           <Button ref={cancelRef} onClick={onClose}>
+                              Cancel
+                           </Button>
+                           <Button colorScheme="red" onClick={handleDelete} ml={3}>
+                              Delete
+                           </Button>
+                        </AlertDialogFooter>
+                     </AlertDialogContent>
+                  </AlertDialogOverlay>
+                  </AlertDialog>
+              
+             
+
+            </center>
        
          </section>
 
