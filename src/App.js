@@ -1,5 +1,6 @@
 import React from "react";
 import './App.css';
+import './components/Recipe/Recipes.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   BrowserRouter as Router,

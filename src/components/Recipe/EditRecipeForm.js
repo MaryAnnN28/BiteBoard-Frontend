@@ -56,10 +56,10 @@ class EditRecipeForm extends React.Component {
   }
   
   render() {
-      const {name, image_url, rating, difficulty, cook_time, category, directions} = this.state
+      const {name, image_url, rating, difficulty, cook_time, category, directions, recipe_ingredients} = this.state
       return (
       <div className="form-container"><br />
-        <h1>Edit Recipe</h1>
+        <h1 className="form-title">Edit Recipe</h1>
         
         <form className="recipe-form"
           onSubmit={this.handleSubmit}>
@@ -208,6 +208,19 @@ class EditRecipeForm extends React.Component {
         </div>
     </div>
 
+    <div className="form-group">
+      <label for="ingredients-textarea" className="col-sm-4 col-form-label">
+        Ingredients</label>
+      <textarea
+        name="ingredients"
+        className="form-control"
+        id="recipe-ingredients"
+        rows="4"
+        value={recipe_ingredients}
+        onChange={this.handleInputChange}
+        >
+      </textarea>
+    </div>
           
     <div className="form-group">
       <label for="directions-textarea" className="col-sm-4 col-form-label">
