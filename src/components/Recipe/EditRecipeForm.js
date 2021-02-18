@@ -59,7 +59,7 @@ class EditRecipeForm extends React.Component {
       const {name, image_url, rating, difficulty, cook_time, category, directions} = this.state
       return (
       <div className="form-container"><br />
-        <h1>Edit Recipe</h1>
+        <h1 className="form-title">Edit Recipe</h1>
         
         <form className="recipe-form"
           onSubmit={this.handleSubmit}>
