@@ -1,6 +1,6 @@
 import React from 'react';
 import './Modal.css';
-import { IconButton, Box, List, ListItem, ListIcon } from "@chakra-ui/react";
+import { IconButton, Box, UnorderedList, ListItem, ListIcon } from "@chakra-ui/react";
 import { EditIcon, DeleteIcon, ArrowRightIcon } from '@chakra-ui/icons';
 import { useHistory } from 'react-router-dom';
 
@@ -33,30 +33,30 @@ const RecipeModal = ({ handleClose, show, recipe, chooseRecipe, deleteRecipe }) 
             </button>
             <center>
                <strong><h3>{recipe.name}</h3></strong>
+               <br/>
                <img class="modal-card-img-top" src={recipe.image_url} class="card-img-top" width="100%" alt="" />
 
                <p>
                   {recipe.category}  <br />
                   Rating: {recipe.rating} <br />
                   {recipe.difficulty} <br />
-                  {recipe.cook_time} <br />
-
-                  {recipe.directions}
+                  {recipe.cook_time} 
                </p>
                <br/>
                <strong>Ingredients:</strong>
                <ul>
                   {recipe.recipe_ingredients.map(ingredient => <li>{ingredient.ingredient.name} - {ingredient.measurement}</li>)}
                </ul>
-               {/* <List spacing={3}>
+               <br/>
+               {/* <UnorderedList>
                   {recipe.recipe_ingredients.map(ingredient => {
                      <ListItem>
                         <ListIcon as={ArrowRightIcon} color="green" />
                         {ingredient.ingredient.name} - {ingredient.measurement}
                      </ListItem>
                   })}
-               </List> */}
-
+               </UnorderedList> */}
+               <p><strong>Directions:</strong> {recipe.directions}</p>
                <Box>
                   {/* <Button mr="4" onClick={handleClick} rightIcon={<EditIcon />} colorScheme="green" variant="outline">
                      Edit
