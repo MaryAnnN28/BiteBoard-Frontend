@@ -6,16 +6,19 @@ import RecipeModal from './RecipeModal';
 
 
 function RecipeComponent({recipe, chooseRecipe, deleteRecipe}) {
+
    
    const [show, setShow] = useState(false);
   
     return (
       <div>
+
       <Box >
 
             <div className="card" onClick={() => setShow(true)}>
             <img class="card-img-top" src={recipe.image_url} class="card-img-top" width="100%" alt=""/> 
               
+            
               <div class="card-body">
                 <center><h5 class="card-title">{recipe.name}</h5></center>
                 <p class="card-text">
@@ -31,10 +34,14 @@ function RecipeComponent({recipe, chooseRecipe, deleteRecipe}) {
               </div>
           </div>
 
+          
+
         </Box>
 
         
+
           <RecipeModal deleteRecipe={deleteRecipe} chooseRecipe={chooseRecipe} show={show} handleClose={() => setShow(false)} recipe={recipe}> 
+
             <p>Modal</p>
             
             

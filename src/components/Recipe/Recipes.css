@@ -1,8 +1,9 @@
-/* div.card-deck {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-} */
+
+body {
+  background: #e8cbc0;
+  background: -webkit-linear-gradient(to right, #95b0ca, #1f4d68);
+  background: linear-gradient(to right, #95b0ca, #1a3544);
+} 
 
 
 .card {
@@ -37,6 +38,12 @@
    color: white;
  }
 
+ .card-img-top {
+  width: 100%;
+  height: 15vw;
+  object-fit: cover;
+ }
+
 
  .card-title {
    color: #244D0C;
@@ -48,7 +55,7 @@
  }
 
  strong {
-   color: #386B19; 
+   color: #386B19;  
  }
 
  .text-muted {
@@ -67,33 +74,56 @@
 
 /* Styling for the NewRecipeFrom  */
 
-.form-container {
-  margin-left: 250px;
-  border-style: hidden;
-  width: 80%;
+div.form-container {
+  margin-top: 50px;
+  margin-left: 280px;
+  background-color: #244d0c;
+  color: #FFF;
+  width: 60%;
+  display: flexbox;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 10px;
+  padding-bottom: 20px;
 }
 
 .form-control {
-  width: 75%;
-  margin-bottom: 10px;
+  width: 100%;
+  margin-bottom: 6px;
+  box-shadow: 0 0 15px 4px rgba(0,0,0,0.08);
+}
+
+
+h1.form-title {
+  font-size: 28px;
+  font-weight: 500;
+  font-family: 'system-ui';
+  color: #FFF;
+  margin-bottom: 1rem;
 }
 
 .col-sm-2.col-form-label {
-  color: #244D0C;
+  color: #FFF;
   font-weight:500;
   margin-top: 10px;
 }
 
 .col-sm-4.col-form-label {
-  color: #244D0C;
+  color: #FFF;
   font-weight:600;
   margin-top: 10px;
+  width: 100%;
 }
 
+
 .btn.btn-primary.mb-2 {
-  align-items:center;
-  background-color: #2e6310;
-  border-style: hidden;
+  background-color: #d7d8d5;
+  color: rgb(44, 42, 42);
+  font-weight: 600;
+  border-style: none;
+  margin-top: 25px;
+  display: flex;
+  align-items: center;
 }
 
 ::placeholder {

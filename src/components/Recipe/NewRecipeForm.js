@@ -21,8 +21,7 @@ class NewRecipeForm extends React.Component {
     
     return (
       <div className="form-container"><br />
-        <h1>Add a New Recipe</h1>
-        
+        <h1 className="form-title">Add a New Recipe</h1>
         <form className="recipe-form"
           onSubmit={(e) => {
             this.renderRecipes()
@@ -112,7 +111,8 @@ class NewRecipeForm extends React.Component {
             />
           <label className="form-check-label" for="inlineRadio2">5</label>
         </div>
-    </div>
+          </div>
+     
 
  
     <div className="form-group">
@@ -200,19 +200,20 @@ class NewRecipeForm extends React.Component {
         rows="4"
         placeholder="Add each direction separated by a comma or semicolon (i.e. preheat oven to 350, chop onions, etc...)"
         value={directions}
-        onChange={handleInputChange}
-        >
-      </textarea>
+        onChange={handleInputChange}>
+        </textarea>
+            
+      <button
+      type="submit"
+      className="btn btn-primary mb-2"
+      >
+      Add Recipe
+      </button>
+      
     </div>
     
     <br />
-  
-    <button
-      type="submit"
-      className="btn btn-primary mb-2">
-      Add Recipe
-      </button>
-
+ 
   </form>
   </div>
 
