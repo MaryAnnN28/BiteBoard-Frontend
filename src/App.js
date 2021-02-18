@@ -20,6 +20,7 @@ import { ChakraProvider, Flex, Spacer } from "@chakra-ui/react";
 
 
 const BASE_URL = "http://localhost:3000/recipes/"
+const INGREDIENTS_URL = "http://localhost:3000/ingredients/"
 
 class App extends React.Component {
 
@@ -37,7 +38,7 @@ class App extends React.Component {
     rating: null,
     difficulty: null,
     cook_time: "",
-    ingredients: "",
+    ingredients: [],
     directions: "",
     chosenRecipe: {}
   }
@@ -48,6 +49,14 @@ class App extends React.Component {
       .then(recipeData => this.setState({
         recipes: recipeData
       }))
+
+    fetch(INGREDIENTS_URL)
+      .then(r => r.json())
+      .then(ingredientData => {
+        this.setState({
+          ingredients: ingredientData
+        })
+      })
 
   }
 
@@ -185,7 +194,7 @@ class App extends React.Component {
             <NavbarContainer page={this.state.page} />
             {this.state.page === "home"
               ? <Flex m="6">
-                <FilterContainer handleSort={this.handleSort} sortFilter={this.state.sortFilter} handleDifficultySelect={this.handleDifficultySelect} handleCategorySelect={this.handleCategorySelect} search={this.state.search} handleSearch={this.handleSearch} recipes={this.filter()} />
+                <FilterContainer ingredients={this.state.ingredients} handleSort={this.handleSort} sortFilter={this.state.sortFilter} handleDifficultySelect={this.handleDifficultySelect} handleCategorySelect={this.handleCategorySelect} search={this.state.search} handleSearch={this.handleSearch} recipes={this.filter()} />
                 <Spacer />
 
                 {/* Original code where recipes render on localhost:3000/recipes */}
@@ -209,7 +218,7 @@ class App extends React.Component {
             }
             <Route path='/NewRecipeForm' render={(routerProps) =>
 
-              <NewRecipeForm formState={this.state} handleInputChange={this.handleInputChange} handleFormSubmit={this.handleFormSubmit} handlePageChange={this.handlePageChange} {...routerProps} />} />
+              <NewRecipeForm ingredients={this.state.ingredients} formState={this.state} handleInputChange={this.handleInputChange} handleFormSubmit={this.handleFormSubmit} handlePageChange={this.handlePageChange} {...routerProps} />} />
 
             <Route path='/EditRecipeForm' render={(routerProps) =>
 
