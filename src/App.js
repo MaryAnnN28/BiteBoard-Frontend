@@ -4,8 +4,7 @@ import './components/Recipe/Recipes.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   BrowserRouter as Router,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 
 import Home from './components/Home';
@@ -17,30 +16,22 @@ import EditRecipeForm from './components/Recipe/EditRecipeForm';
 
 import { ChakraProvider, Flex, Spacer } from "@chakra-ui/react";
 
-
-
-const BASE_URL = "http://localhost:3000/recipes/"
-const INGREDIENTS_URL = "http://localhost:3000/ingredients/"
+const BASE_URL = "http://localhost:3000/recipes/";
+const INGREDIENTS_URL = "http://localhost:3000/ingredients/";
 
 class App extends React.Component {
 
 
   state = {
     recipes: [],
+    ingredients: [],
     search: "",
     filterCategory: "",
     filterDifficulty: "",
     sortFilter: "none",
-    category: "",
     page: "home",
-    name: "",
-    image_url: "",
-    rating: null,
-    difficulty: null,
-    cook_time: "",
-    ingredients: [],
-    directions: "",
-    chosenRecipe: {}
+    chosenRecipe: {},
+    chosenIngredients: []
   }
 
   componentDidMount() {
@@ -58,6 +49,13 @@ class App extends React.Component {
         })
       })
 
+  }
+
+  handleCheck = (checkedIngredient) => {
+    const ingredients = this.state.chosenIngredients
+    ingredients.includes(checkedIngredient) 
+    ? this.setState({chosenIngredients: ingredients.filter(ingredient => ingredient !== checkedIngredient)})
+    : this.setState({chosenIngredients: [...ingredients, checkedIngredient]}) 
   }
 
   updateRecipe = (updatedRecipe) => {
@@ -118,40 +116,16 @@ class App extends React.Component {
     })
   }
 
-  handleInputChange = (event) => {
+  addRecipe = (newRecipeData) => {
     this.setState({
-      [event.target.name]: event.target.value
+      recipes: [...this.state.recipes, newRecipeData]
     })
   }
 
-  handleFormSubmit = (event) => {
-    event.preventDefault()
-    let newRecipe = {
-      name: event.target.name.value,
-      image_url: event.target.image_url.value,
-      category: event.target.category.value,
-      rating: event.target.rating.value,
-      difficulty: event.target.difficulty.value,
-      cook_time: event.target.cook_time.value,
-      ingredients: event.target.ingredients.value,
-      directions: event.target.directions.value
-    }
-    event.target.reset()
-
-    let reqPack = {
-      headers: { "Content-Type": "application/json" },
-      method: "POST",
-      body: JSON.stringify(newRecipe)
-    }
-    fetch(BASE_URL, reqPack)
-      .then(resp => resp.json())
-      .then((newRecipeData) => {
-        this.setState({
-          recipes: [...this.state.recipes, newRecipeData],
-          rating: null,
-          difficulty: null
-        })
-      })
+  addRecipeIngredients = (updatedRecipe) => {
+    this.setState({
+      recipes: this.state.recipes.map(recipe => recipe.id === updatedRecipe.id ? updatedRecipe : recipe)
+    })
   }
 
   handleSort = (e) => {
@@ -166,7 +140,8 @@ class App extends React.Component {
       search: "",
       filterCategory: "",
       filterDifficulty: "",
-      sortFilter: "none"
+      sortFilter: "none",
+      chosenIngredients: []
     })
   }
 
@@ -182,13 +157,7 @@ class App extends React.Component {
     return (
       <Router>
         <div>
-          {/* <nav>
-            <ul>
-            <li><Link to="/">Home</Link> </li>
-            <li><Link to="/recipes">Recipes</Link></li>
-            <li><Link to="/NewRecipeForm">Add New Recipe</Link></li>  
-            </ul>
-          </nav> */}
+          
 
           <ChakraProvider>
             <NavbarContainer page={this.state.page} />
@@ -197,28 +166,19 @@ class App extends React.Component {
                 <FilterContainer ingredients={this.state.ingredients} handleSort={this.handleSort} sortFilter={this.state.sortFilter} handleDifficultySelect={this.handleDifficultySelect} handleCategorySelect={this.handleCategorySelect} search={this.state.search} handleSearch={this.handleSearch} recipes={this.filter()} />
                 <Spacer />
 
-                {/* Original code where recipes render on localhost:3000/recipes */}
+                
                 <Route exact path="/"> <Home /> </Route>
 
                 <Route path="/recipes" render={(routerProps) =>
                   <RecipeContainer deleteRecipe={this.deleteRecipe} chooseRecipe={this.chooseRecipe} recipeContainerUnmounted={this.recipeContainerUnmounted} recipes={this.filter()} {...routerProps} />} />
-
-
-                {/* <Route exact path="/" render={(routerProps) =>
-                  <RecipeContainer showRecipeDetails={this.showRecipeDetails} recipes={this.filter()} {...routerProps} />} />
-  
-                  <Route path="/recipes" render={(routerProps) =>
-                  <RecipeShowPage recipes={this.filter()} {...routerProps} />} /> */}
+                
               </Flex>
               : null
-
-
-
 
             }
             <Route path='/NewRecipeForm' render={(routerProps) =>
 
-              <NewRecipeForm ingredients={this.state.ingredients} formState={this.state} handleInputChange={this.handleInputChange} handleFormSubmit={this.handleFormSubmit} handlePageChange={this.handlePageChange} {...routerProps} />} />
+              <NewRecipeForm addRecipeIngredients={this.addRecipeIngredients} addRecipe={this.addRecipe} ingredients={this.state.ingredients} handlePageChange={this.handlePageChange} {...routerProps} />} />
 
             <Route path='/EditRecipeForm' render={(routerProps) =>
 

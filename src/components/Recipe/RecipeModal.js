@@ -1,7 +1,7 @@
 import React from 'react';
 import './Modal.css';
-import { IconButton, Box, UnorderedList, ListItem, ListIcon, AlertDialog, AlertDialogBody, AlertDialogFooter, AlertDialogContent, AlertDialogOverlay, AlertDialogHeader, Button } from "@chakra-ui/react";
-import { EditIcon, DeleteIcon, ArrowRightIcon } from '@chakra-ui/icons';
+import { IconButton, Box, AlertDialog, AlertDialogBody, AlertDialogFooter, AlertDialogContent, AlertDialogOverlay, AlertDialogHeader, Button } from "@chakra-ui/react";
+import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
 import { useHistory } from 'react-router-dom';
 
 const BASE_URL = "http://localhost:3000/recipes/"
