@@ -1,7 +1,7 @@
 import React from 'react';
 import './Modal.css';
-import { IconButton, Box, UnorderedList, ListItem, ListIcon, AlertDialog, AlertDialogBody, AlertDialogFooter, AlertDialogContent, AlertDialogOverlay, AlertDialogHeader, Button } from "@chakra-ui/react";
-import { EditIcon, DeleteIcon, ArrowRightIcon } from '@chakra-ui/icons';
+import { IconButton, Box, AlertDialog, AlertDialogBody, AlertDialogFooter, AlertDialogContent, AlertDialogOverlay, AlertDialogHeader, Button } from "@chakra-ui/react";
+import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
 import { useHistory } from 'react-router-dom';
 
 const BASE_URL = "http://localhost:3000/recipes/"
@@ -65,6 +65,7 @@ const RecipeModal = ({ handleClose, show, recipe, chooseRecipe, deleteRecipe }) 
                </ul>
      
                <br/>
+
                <div class="text-content"><strong>Ingredients</strong></div>
                <ul className="ingredient-list">
                {recipe.recipe_ingredients.map(ingredient =>
@@ -74,20 +75,11 @@ const RecipeModal = ({ handleClose, show, recipe, chooseRecipe, deleteRecipe }) 
                   </li>)}
                </ul>
                <br/>
-               {/* <UnorderedList>
-                  {recipe.recipe_ingredients.map(ingredient => {
-                     <ListItem>
-                        <ListIcon as={ArrowRightIcon} color="green" />
-                        {ingredient.ingredient.name} - {ingredient.measurement}
-                     </ListItem>
-                  })}
-               </UnorderedList> */}
+               
             <p class="text-content"><strong>Directions:</strong> {recipe.directions}</p>
+
             <center>
                <Box>
-                  {/* <Button mr="4" onClick={handleClick} rightIcon={<EditIcon />} colorScheme="green" variant="outline">
-                     Edit
-                  </Button> */}
                   <IconButton
                      variant="outline"
                      colorScheme="green"
@@ -109,6 +101,7 @@ const RecipeModal = ({ handleClose, show, recipe, chooseRecipe, deleteRecipe }) 
                      mb="6"
                   />
                </Box>
+
 
                <AlertDialog
                   isOpen={isOpen}
@@ -138,6 +131,7 @@ const RecipeModal = ({ handleClose, show, recipe, chooseRecipe, deleteRecipe }) 
                   </AlertDialog>
               
              
+
 
             </center>
        
