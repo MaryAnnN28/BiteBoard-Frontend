@@ -31,7 +31,7 @@ class App extends React.Component {
     sortFilter: "none",
     page: "home",
     chosenRecipe: {},
-    chosenIngredients: []
+    chosenIngredient: null
   }
 
   componentDidMount() {
@@ -52,10 +52,11 @@ class App extends React.Component {
   }
 
   handleCheck = (checkedIngredient) => {
-    const ingredients = this.state.chosenIngredients
-    ingredients.includes(checkedIngredient) 
-    ? this.setState({chosenIngredients: ingredients.filter(ingredient => ingredient !== checkedIngredient)})
-    : this.setState({chosenIngredients: [...ingredients, checkedIngredient]}) 
+    if (this.state.chosenIngredient !== checkedIngredient) {
+      this.setState({chosenIngredient: checkedIngredient})
+    } else {
+      this.setState({chosenIngredient: null})
+    }
   }
 
   updateRecipe = (updatedRecipe) => {
@@ -91,6 +92,16 @@ class App extends React.Component {
       this.state.sortFilter === "Cook Time"
         ? recipes = recipes.sort((a, b) => (+(a.cook_time.split("-")[0]) > +(b.cook_time.split("-")[0]) ? 1 : -1))
         : recipes = recipes.sort((a, b) => (+(a.rating.split(" ")[0]) < +(b.rating.split(" ")[0]) ? 1 : -1))
+    };
+
+    if (!!this.state.chosenIngredient) {
+      const newRecipes = []
+      recipes.forEach(recipe => recipe.recipe_ingredients.forEach(recipeIngredient => {
+        if (recipeIngredient.ingredient.name === this.state.chosenIngredient.name) {
+          newRecipes.push(recipe)
+        }
+      }))
+      recipes = newRecipes
     };
 
     recipes = recipes.filter(recipe => recipe.name.toLowerCase().includes(this.state.search.toLowerCase()));
@@ -163,7 +174,7 @@ class App extends React.Component {
             <NavbarContainer page={this.state.page} />
             {this.state.page === "home"
               ? <Flex m="6">
-                <FilterContainer ingredients={this.state.ingredients} handleSort={this.handleSort} sortFilter={this.state.sortFilter} handleDifficultySelect={this.handleDifficultySelect} handleCategorySelect={this.handleCategorySelect} search={this.state.search} handleSearch={this.handleSearch} recipes={this.filter()} />
+                <FilterContainer handleCheck={this.handleCheck} chosenIngredient={this.state.chosenIngredient} ingredients={this.state.ingredients} handleSort={this.handleSort} sortFilter={this.state.sortFilter} handleDifficultySelect={this.handleDifficultySelect} handleCategorySelect={this.handleCategorySelect} search={this.state.search} handleSearch={this.handleSearch} recipes={this.filter()} />
                 <Spacer />
 
                 
