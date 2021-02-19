@@ -10,22 +10,28 @@ class FilterContainer extends React.Component {
    render() {
       const { search, handleSearch, recipes, handleCategorySelect, handleDifficultySelect, sortFilter, handleSort, ingredients } = this.props
       return (
+      
          <Box w="20%">
-            <InputGroup>
-               <InputLeftAddon children={<SearchIcon />} />
-               <Input placeholder="search" value={search} onChange={handleSearch} />
+            <br />
+               <InputGroup>
+                  <InputLeftAddon children={<SearchIcon/>}/>
+                  <Input placeholder="search" value={search} onChange={handleSearch}/>
             </InputGroup>
+            <br />
             <CategorySelect handleCategorySelect={handleCategorySelect} recipes={recipes} />
+            <br />
             <DifficultySelect handleDifficultySelect={handleDifficultySelect} />
-            <Sort sortFilter={sortFilter} handleSort={handleSort} />
-            <CheckboxGroup colorScheme="green" >
+            <br />
+               <Sort sortFilter={sortFilter} handleSort={handleSort} />
+        <CheckboxGroup colorScheme="green" >
                <HStack>
                   {ingredients.map(ingredient => {
                      <Checkbox>{ingredient.name}</Checkbox>
                   })}
                </HStack>
             </CheckboxGroup>
-         </Box>
+            </Box>
+
       )
    }
 }
