@@ -1,7 +1,6 @@
 ![alt text](https://i.imgur.com/RSFijx0m.jpg)
 
-BiteBoard. Your recipes, all in one place! 
-Add your own recipes and easily browse through your online cookbook. :fork_and_knife:
+### BiteBoard. Your recipes, all in one place! Add recipes and easily browse through your online cookbook. :fork_and_knife:
 
 
 #### Project By: 
