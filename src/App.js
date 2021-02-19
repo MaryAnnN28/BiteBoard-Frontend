@@ -185,7 +185,36 @@ class App extends React.Component {
               <EditRecipeForm updateRecipe={this.updateRecipe} {...this.state.chosenRecipe} handlePageChange={this.handlePageChange} {...routerProps} />} />
           </ChakraProvider>
 
-
+          
+      <footer class="mainfooter" role="contentinfo">
+        <div class="footer-middle">
+          <div class="container">
+                  
+                <div class="row">
+                  <div class="footer-pad">
+                      <img src="https://i.imgur.com/fjkMe6H.png" alt="bite-board-logo" />
+                      <h4>
+                      {/* &nbsp; &nbsp; &nbsp; &nbsp; */}
+                      <a href="https://github.com/MaryAnnN28">Mary Ann Navarrete</a> 
+                      &nbsp; &nbsp; | &nbsp; &nbsp;
+                      <a href="https://github.com/kirstybrews">Kirsty Brewster</a>
+                    </h4>
+                    <br />
+                    &copy; Copyright 2021 - BiteBoard.  All rights reserved.
+                  </div>
+                  </div>
+        
+            <div class="row">
+                  <div class="col-md-12 copy">
+                    <br /> 
+                
+                   
+		          </div>
+	          </div>
+              </div>
+              </div>
+     
+      </footer>
 
 
         </div>
