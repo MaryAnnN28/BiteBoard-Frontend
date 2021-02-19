@@ -1,6 +1,7 @@
 import React from 'react'; 
 import AddRecipeCard from './AddRecipeCard'
 import RecipeComponent from './RecipeComponent';
+import './Recipes.css';
 
 
 import { SimpleGrid, Box } from "@chakra-ui/react";
@@ -20,7 +21,7 @@ class RecipeContainer extends React.Component {
                   {this.props.recipes.length > 0 ? 
                      this.props.recipes.map((recipe) =>
                         <RecipeComponent key={recipe.id} deleteRecipe={this.props.deleteRecipe} chooseRecipe={this.props.chooseRecipe} recipe={recipe} />)
-                     : <h1>No matches</h1>
+                     : <Box ml="20" mt="8"><strong><h1>No matches</h1></strong></Box>
               }
               
              
