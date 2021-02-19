@@ -79,7 +79,7 @@
 div.form-container {
   margin-top: 50px;
   margin-left: 280px;
-  background-color: #244d0c;
+  background-color: #456631;
   color: #FFF;
   width: 60%;
   display: flexbox;
@@ -87,6 +87,8 @@ div.form-container {
   padding-right: 40px;
   padding-top: 10px;
   padding-bottom: 20px;
+  border-radius: 5px;
+  opacity: 80%;
 }
 
 .form-control {
@@ -175,4 +177,28 @@ Note that we use `flex-direction: row-reverse` on the container
 
   /* Used to position the hover state */
   position: relative;
+}
+
+
+/* Footer Styling */
+
+/* linear-gradient(59deg, #456631, #2f491f); */
+
+footer {
+  background: #16222A;
+  background: -webkit-linear-gradient(59deg, #738a64, #354729);
+  background: linear-gradient(59deg, #7b8d6f, #344629); 
+  color: white;
+  margin-top:100px;
+}
+
+footer a {
+  color: #fff;
+  font-size: 14px;
+  transition-duration: 0.2s;
+}
+
+.footer-middle {
+  padding-top: 2em;
+  color: white;
 }
