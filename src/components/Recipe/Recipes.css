@@ -24,7 +24,8 @@
   width: 18.5rem;
   height: 23.5rem;
   flex: 0 1 25%;   
-  background-color: #F5DEB3;
+  background-color: #456631;
+  opacity: 70%;
    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin-left: 2rem;
   margin-bottom: 1rem;
