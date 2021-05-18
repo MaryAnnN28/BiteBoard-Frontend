@@ -23,7 +23,7 @@
   height: 40vh; /* if you don't want it to take up the full screen, reduce this number */
   overflow: hidden;
   background-size: cover !important;
-  background: linear-gradient(to top, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 10%, rgba(0,0,0,0.3) 100%), url('https://i.imgur.com/IJpYvX1.jpg') center scroll;
+  background: linear-gradient(to top, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 10%, rgba(0,0,0,0.3) 100%), url('../../images/bite_board_banner.jpeg') center scroll;
 }
     
       
