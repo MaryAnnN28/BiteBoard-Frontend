@@ -2,7 +2,6 @@ import React from 'react';
 import './Modal.css';
 import { IconButton, Box, AlertDialog, AlertDialogBody, AlertDialogFooter, AlertDialogContent, AlertDialogOverlay, AlertDialogHeader, Button } from "@chakra-ui/react";
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
-// import { useHistory } from 'react-router-dom';
 
 const BASE_URL = "http://localhost:3000/recipes/"
 
@@ -33,7 +32,6 @@ class RecipeModal extends React.Component {
    
    
    render() {
-      // const cancelRef = React.useRef()
       
       const showHideClassName = this.props.show ? "modal display-block" : "modal display-none";
 
@@ -104,7 +102,6 @@ class RecipeModal extends React.Component {
                         colorScheme="green"
                         aria-label="Delete recipe"
                         icon={<DeleteIcon />}
-                        // onClick={handleDelete} <--- Directly deletes without alert
                         onClick={() => this.setState({isOpen: true})}
                         mt="6"
                         mb="6"

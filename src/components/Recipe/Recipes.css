@@ -1,11 +1,3 @@
-
-/* body {
-  background: #e8cbc0;
-  background: -webkit-linear-gradient(to right, #95b0ca, #1f4d68);
-  background: linear-gradient(to right, #95b0ca, #1a3544);
-}  */
-
-
 .card {
   display: inline-grid; 
   width: 18.5rem;
@@ -182,8 +174,6 @@ Note that we use `flex-direction: row-reverse` on the container
 
 
 /* Footer Styling */
-
-/* linear-gradient(59deg, #456631, #2f491f); */
 
 footer {
   background: #16222A;

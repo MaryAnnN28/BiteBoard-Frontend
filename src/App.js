@@ -6,8 +6,6 @@ import {
   BrowserRouter as Router,
   Route
 } from "react-router-dom";
-
-import Home from './components/Home';
 import NavbarContainer from './components/Navbar/NavbarContainer';
 import RecipeContainer from './components/Recipe/RecipeContainer';
 import FilterContainer from './components/Filter/FilterContainer';
@@ -176,9 +174,6 @@ class App extends React.Component {
               ? <Flex m="6">
                 <FilterContainer handleCheck={this.handleCheck} chosenIngredient={this.state.chosenIngredient} ingredients={this.state.ingredients} handleSort={this.handleSort} sortFilter={this.state.sortFilter} handleDifficultySelect={this.handleDifficultySelect} handleCategorySelect={this.handleCategorySelect} search={this.state.search} handleSearch={this.handleSearch} recipes={this.filter()} />
                 <Spacer />
-
-                
-                <Route exact path="/"> <Home /> </Route>
 
                 <Route path="/recipes" render={(routerProps) =>
                   <RecipeContainer 
